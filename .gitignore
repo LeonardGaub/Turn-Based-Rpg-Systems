@@ -2,13 +2,13 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
-PortfolioProject/[Ll]ibrary/
-PortfolioProject/[Tt]emp/
-PortfolioProject/[Oo]bj/
-PortfolioProject/[Bb]uild/
-PortfolioProject/[Bb]uilds/
-PortfolioProject/[Ll]ogs/
-PortfolioProject/[Uu]ser[Ss]ettings/
+3DRpgPortfolio/[Ll]ibrary/
+3DRpgPortfolio/[Tt]emp/
+3DRpgPortfolio/[Oo]bj/
+3DRpgPortfolio/[Bb]uild/
+3DRpgPortfolio/[Bb]uilds/
+3DRpgPortfolio/[Ll]ogs/
+3DRpgPortfolio/[Uu]ser[Ss]ettings/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
