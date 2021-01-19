@@ -42,8 +42,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 461.6, y: 115.9}
-  m_SizeDelta: {x: 950, y: 0}
+  m_AnchoredPosition: {x: 385.5, y: 93.2}
+  m_SizeDelta: {x: 797.7783, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6889288765035394280
 CanvasRenderer:
@@ -101,7 +101,7 @@ MonoBehaviour:
     m_Top: 50
     m_Bottom: 50
   m_ChildAlignment: 0
-  m_Spacing: 30
+  m_Spacing: 29.93
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
@@ -138,10 +138,8 @@ MonoBehaviour:
   title: {fileID: 8591096459856155106}
   rewardText: {fileID: 5931772461763632794}
   objectiveContainer: {fileID: 160937256299900892}
-  objectivePrefab: {fileID: 4370862813355702542, guid: 499a34835c5c7e041a7c657011850eef,
-    type: 3}
-  objectiveIncompletePrefab: {fileID: 3112784698953836112, guid: bdbfd661d09f9ab42b99a7576dbb145b,
-    type: 3}
+  objectivePrefab: {fileID: 4370862813355702542, guid: 63ab084bb5eeedc4197861090925f83f, type: 3}
+  objectiveIncompletePrefab: {fileID: 952929814951891094, guid: 3991532791143704a845559d9a5d1416, type: 3}
 --- !u!1 &1972933268289037918
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,8 +294,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70
-  m_fontSizeBase: 70
+  m_fontSize: 55
+  m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -430,8 +428,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -566,8 +564,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55
-  m_fontSizeBase: 55
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -700,8 +698,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55
-  m_fontSizeBase: 55
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

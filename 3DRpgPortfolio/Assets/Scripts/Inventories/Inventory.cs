@@ -19,6 +19,8 @@ namespace GameDevTV.Inventories
         // STATE
         InventorySlot[] slots;
 
+        
+
         public struct InventorySlot
         {
             public InventoryItem item;
@@ -165,7 +167,9 @@ namespace GameDevTV.Inventories
 
         private void Awake()
         {
+
             slots = new InventorySlot[inventorySize];
+            AddToFirstEmptySlot(InventoryItem.GetFromID("76faf3d7-1f10-4256-a9bc-e20d7e77d23f"), 1);
         }
 
         /// <summary>
@@ -204,6 +208,7 @@ namespace GameDevTV.Inventories
         /// <returns>-1 if no stack exists or if the item is not stackable.</returns>
         private int FindStack(InventoryItem item)
         {
+            print(item);
             if (!item.IsStackable())
             {
                 return -1;

@@ -29,6 +29,7 @@ public class QuestTooltipUI : MonoBehaviour
                 prefab = objectivePrefab;
             }
             var newObjective = Instantiate(prefab, objectiveContainer.transform);
+            
             newObjective.GetComponentInChildren<TextMeshProUGUI>().text = objective.description;
         }
 

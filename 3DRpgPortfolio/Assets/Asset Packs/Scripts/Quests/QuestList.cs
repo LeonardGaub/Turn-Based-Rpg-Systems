@@ -25,10 +25,7 @@ public class QuestList : MonoBehaviour, ISaveable, IPredicateEvaluator
         }
         QuestStatus newStatus = new QuestStatus(newQuest);
         statuses.Add(newStatus);
-        if (onUpdate != null)
-        {
-            onUpdate();
-        }
+        onUpdate?.Invoke();
     }
 
     public bool HasQuest(Quest quest)
@@ -44,10 +41,7 @@ public class QuestList : MonoBehaviour, ISaveable, IPredicateEvaluator
         {
             GiveReward(quest);
         }
-        if (onUpdate != null)
-        {
-            onUpdate();
-        }
+        onUpdate?.Invoke();
     }
 
     private void GiveReward(Quest quest)

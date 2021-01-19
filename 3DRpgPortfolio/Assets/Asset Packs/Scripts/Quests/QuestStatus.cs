@@ -28,7 +28,6 @@ public class QuestStatus
      
         _quest =  Quest.GetByName(status.questName);
         _completedObjectives = status.completedObjectives;
-        
     } 
     
     public Quest GetQuest()
