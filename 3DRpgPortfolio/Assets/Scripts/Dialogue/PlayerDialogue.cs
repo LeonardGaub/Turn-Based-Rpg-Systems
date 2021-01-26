@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System;
 
 public class PlayerDialogue : MonoBehaviour
 {
@@ -12,7 +11,7 @@ public class PlayerDialogue : MonoBehaviour
     private NpcDialogue _currentNpc;
 
     public event Action OnDialogueUpdated;
-    
+   
     public bool HasDialogue()
     {
         return _currentDialogue != null;

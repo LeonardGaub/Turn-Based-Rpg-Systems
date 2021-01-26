@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using GameDevTV.Saving;
-using UnityEngine;
+using Rpg.Saving;
 
 [Serializable]
 public class QuestStatus

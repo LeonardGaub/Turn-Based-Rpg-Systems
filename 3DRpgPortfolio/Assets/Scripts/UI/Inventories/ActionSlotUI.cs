@@ -1,32 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using GameDevTV.Core.UI.Dragging;
-using GameDevTV.Inventories;
+﻿using Rpg.UI.Dragging;
+using Rpg.Inventories;
 using UnityEngine;
 
-namespace GameDevTV.UI.Inventories
+namespace Rpg.UI.Inventories
 {
-    /// <summary>
-    /// The UI slot for the player action bar.
-    /// </summary>
     public class ActionSlotUI : MonoBehaviour, IItemHolder, IDragContainer<InventoryItem>
     {
-        // CONFIG DATA
         [SerializeField] InventoryItemIcon icon = null;
         [SerializeField] int index = 0;
 
-        // CACHE
         ActionStore store;
 
-        // LIFECYCLE METHODS
         private void Awake()
         {
             //store = GameObject.FindGameObjectWithTag("Player").GetComponent<ActionStore>();
             //store.storeUpdated += UpdateIcon;
             //TODO
         }
-
-        // PUBLIC
 
         public void AddItems(InventoryItem item, int number)
         {
@@ -52,9 +42,6 @@ namespace GameDevTV.UI.Inventories
         {
             store.RemoveItems(index, number);
         }
-
-        // PRIVATE
-
         void UpdateIcon()
         {
             icon.SetItem(GetItem(), GetNumber());

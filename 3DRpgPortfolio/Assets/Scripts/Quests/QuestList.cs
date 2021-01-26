@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using GameDevTV.Inventories;
-using GameDevTV.Saving;
+using Rpg.Inventories;
+using Rpg.Saving;
 using UnityEngine;
 
 public class QuestList : MonoBehaviour, ISaveable, IPredicateEvaluator
@@ -35,6 +34,10 @@ public class QuestList : MonoBehaviour, ISaveable, IPredicateEvaluator
 
     public void CompleteObjective(Quest quest, string objective)
     {
+        if (!HasQuest(quest))
+        {
+            return;
+        }
         QuestStatus status = GetQuestStatus(quest);
         status.CompleteObjective(objective);
         if (status.IsComplete())

@@ -1,17 +1,13 @@
-using GameDevTV.Inventories;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace RPG.Inventories
+namespace Rpg.Inventories
 {
     public class RandomDropper : ItemDropper
     {
-        // CONFIG DATA
-        [Tooltip("How far can the pickups be scattered from the dropper.")]
         [SerializeField] float scatterDistance = 1;
         [SerializeField] DropLibrary dropLibrary;
 
-        // CONSTANTS
         const int ATTEMPTS = 30;
 
         public void RandomDrop()
@@ -28,7 +24,6 @@ namespace RPG.Inventories
 
         protected override Vector3 GetDropLocation()
         {
-            // We might need to try more than once to get on the NavMesh
             for (int i = 0; i < ATTEMPTS; i++)
             {
                 Vector3 randomPoint = transform.position + Random.insideUnitSphere * scatterDistance;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameDevTV.Core.UI.Dragging
+namespace Rpg.UI.Dragging
 {
     /// <summary>
     /// Components that implement this interfaces can act as the destination for

@@ -2,23 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using GameDevTV.Inventories;
+using Rpg.Inventories;
 using TMPro;
 
-namespace GameDevTV.UI.Inventories
+namespace Rpg.UI.Inventories
 {
-    /// <summary>
-    /// To be put on the icon representing an inventory item. Allows the slot to
-    /// update the icon and number.
-    /// </summary>
     [RequireComponent(typeof(Image))]
     public class InventoryItemIcon : MonoBehaviour
     {
-        // CONFIG DATA
         [SerializeField] GameObject textContainer = null;
         [SerializeField] TextMeshProUGUI itemNumber = null;
 
-        // PUBLIC
 
         public void SetItem(InventoryItem item)
         {

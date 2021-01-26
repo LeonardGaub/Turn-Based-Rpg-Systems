@@ -14,8 +14,7 @@ public class Dialogue : ScriptableObject, ISerializationCallbackReceiver
     
     private void OnValidate()
     {
-        nodeLookup.Clear();
-        Debug.Log("Clear");
+        nodeLookup.Clear();        
         foreach (var node in GetNodes())
         {
             nodeLookup.Add(node.name, node);

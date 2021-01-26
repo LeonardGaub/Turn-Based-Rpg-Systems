@@ -1,24 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GameDevTV.Inventories;
+using Rpg.Inventories;
 
-namespace GameDevTV.UI.Inventories
+namespace Rpg.UI.Inventories
 {
-    /// <summary>
-    /// To be placed on the root of the inventory UI. Handles spawning all the
-    /// inventory slot prefabs.
-    /// </summary>
     public class InventoryUI : MonoBehaviour
     {
-        // CONFIG DATA
         [SerializeField] InventorySlotUI InventoryItemPrefab = null;
 
-        // CACHE
         Inventory playerInventory;
-
-        // LIFECYCLE METHODS
-
         private void Awake() 
         {
             playerInventory = Inventory.GetPlayerInventory();
@@ -29,8 +20,6 @@ namespace GameDevTV.UI.Inventories
         {
             Redraw();
         }
-
-        // PRIVATE
 
         private void Redraw()
         {

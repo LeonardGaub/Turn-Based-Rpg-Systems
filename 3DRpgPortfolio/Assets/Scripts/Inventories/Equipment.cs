@@ -1,31 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using GameDevTV.Saving;
+using Rpg.Saving;
 
-namespace GameDevTV.Inventories
+namespace Rpg.Inventories
 {
-    /// <summary>
-    /// Provides a store for the items equipped to a player. Items are stored by
-    /// their equip locations.
-    /// 
-    /// This component should be placed on the GameObject tagged "Player".
-    /// </summary>
     public class Equipment : MonoBehaviour, ISaveable
-    {
-        // STATE
+    { 
         Dictionary<EquipLocation, EquipableItem> equippedItems = new Dictionary<EquipLocation, EquipableItem>();
 
-        // PUBLIC
-
-        /// <summary>
-        /// Broadcasts when the items in the slots are added/removed.
-        /// </summary>
         public event Action equipmentUpdated;
 
-        /// <summary>
-        /// Return the item in the given equip location.
-        /// </summary>
         public EquipableItem GetItemInSlot(EquipLocation equipLocation)
         {
             if (!equippedItems.ContainsKey(equipLocation))
@@ -36,10 +21,6 @@ namespace GameDevTV.Inventories
             return equippedItems[equipLocation];
         }
 
-        /// <summary>
-        /// Add an item to the given equip location. Do not attempt to equip to
-        /// an incompatible slot.
-        /// </summary>
         public void AddItem(EquipLocation slot, EquipableItem item)
         {
             Debug.Assert(item.GetAllowedEquipLocation() == slot);
@@ -52,9 +33,6 @@ namespace GameDevTV.Inventories
             }
         }
 
-        /// <summary>
-        /// Remove the item for the given slot.
-        /// </summary>
         public void RemoveItem(EquipLocation slot)
         {
             equippedItems.Remove(slot);
@@ -63,8 +41,6 @@ namespace GameDevTV.Inventories
                 equipmentUpdated();
             }
         }
-
-        // PRIVATE
 
         object ISaveable.CaptureState()
         {

@@ -1,10 +1,6 @@
-﻿
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using GameDevTV.Inventories;
-using UnityEditor;
+using Rpg.Inventories;
 using UnityEngine;
 
 [CreateAssetMenu(fileName =  "New Quest", menuName = "RPG Project/Quest", order = 0)]

@@ -1,26 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using GameDevTV.Core.UI.Dragging;
-using GameDevTV.Inventories;
+﻿using UnityEngine;
+using Rpg.UI.Dragging;
+using Rpg.UI.Inventories;
+using Rpg.Inventories;
 
-namespace GameDevTV.UI.Inventories
+namespace Rpg.UI.Inventories
 {
-    /// <summary>
-    /// An slot for the players equipment.
-    /// </summary>
     public class EquipmentSlotUI : MonoBehaviour, IItemHolder, IDragContainer<InventoryItem>
     {
-        // CONFIG DATA
 
         [SerializeField] InventoryItemIcon icon = null;
         [SerializeField] EquipLocation equipLocation = EquipLocation.Weapon;
 
-        // CACHE
         Equipment playerEquipment;
-
-        // LIFECYCLE METHODS
        
         private void Awake() 
         {
@@ -33,8 +24,6 @@ namespace GameDevTV.UI.Inventories
         {
             RedrawUI();
         }
-
-        // PUBLIC
 
         public int MaxAcceptable(InventoryItem item)
         {
@@ -73,7 +62,6 @@ namespace GameDevTV.UI.Inventories
             playerEquipment.RemoveItem(equipLocation);
         }
 
-        // PRIVATE
 
         void RedrawUI()
         {

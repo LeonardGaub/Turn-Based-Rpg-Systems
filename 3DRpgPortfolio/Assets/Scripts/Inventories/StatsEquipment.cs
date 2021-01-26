@@ -1,7 +1,4 @@
-﻿using GameDevTV.Inventories;
-using UnityEngine;
-
-namespace RPG.Inventories
+﻿namespace Rpg.Inventories
 {
     public class StatsEquipment : Equipment //IModifierProvider
     {
