@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 public class QuestTooltipUI : MonoBehaviour
@@ -38,27 +35,29 @@ public class QuestTooltipUI : MonoBehaviour
 
     private string GetRewardText(Quest quest)
     {
-        string rewardText = "";
+        string rewardTextString = "";
         foreach (var reward in quest.GetRewards())
         {
-            if (rewardText != "")
+            if (rewardTextString != "")
             {
-                rewardText += ", \n";
+                rewardTextString += ", \n";
             }
 
             if (reward.amount > 1)
             {
-                rewardText += reward.amount + " ";
+                rewardTextString += reward.amount + " ";
             }
-            rewardText += reward.item.GetDisplayName();
+            Debug.Log(rewardText);
+            Debug.Log(reward.item.GetDisplayName());
+            rewardTextString += reward.item.GetDisplayName();
         }
 
-        if (rewardText == "")
+        if (rewardTextString == "")
         {
-            rewardText = "No Reward";
+            rewardTextString = "No Reward";
         }
 
-        rewardText += ".";
-        return rewardText;
+        rewardTextString += ".";
+        return rewardTextString;
     }
 }

@@ -14135,7 +14135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27b195c035a3dcb4da34acc69af9898a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 11400000, guid: d850ea338338ddf488571b6c4196d571, type: 2}
+  dialogue: {fileID: 11400000, guid: bed543ead7e45ce4a9eea9c655fce9fa, type: 2}
 --- !u!4 &405440380
 Transform:
   m_ObjectHideFlags: 0
@@ -14172,7 +14172,7 @@ MonoBehaviour:
           m_MethodName: AddQuest
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 86bdc70d1a4faab48bfd70dcba4d85e7, type: 2}
+            m_ObjectArgument: {fileID: 11400000, guid: 8bf0925117d0c65478419cd88bb158ae, type: 2}
             m_ObjectArgumentAssemblyTypeName: Quest, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -14207,8 +14207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47f07acc56bc9a440a8c423d06c04be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quest: {fileID: 11400000, guid: 86bdc70d1a4faab48bfd70dcba4d85e7, type: 2}
-  objective: 1
+  quest: {fileID: 11400000, guid: 8bf0925117d0c65478419cd88bb158ae, type: 2}
+  objective: a
 --- !u!1001 &405815746
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22438,7 +22438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1073883832590197764, guid: 80bb38c4ef6d64b4ca647d70bce18ecf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -662.35
+      value: -576.9482
       objectReference: {fileID: 0}
     - target: {fileID: 1073883832590197764, guid: 80bb38c4ef6d64b4ca647d70bce18ecf, type: 3}
       propertyPath: m_SizeDelta.y

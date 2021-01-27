@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a2e418f1a7fa3d4daba4b975be23417, type: 3}
-  m_Name: PopJonas
+  m_Name: TestQuest
   m_EditorClassIdentifier: 
   objectives:
-  - refrence: 1
-    description: Pop Jonas
+  - refrence: a
+    description: Ask how Nico are
   rewards:
-  - amount: 3
-    item: {fileID: 11400000, guid: ea15e74fc55e50548902fb89c7726b59, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: 4bb0d5407e245ba4aa73580d0af1eb89, type: 2}
+  - amount: 0
+    item: {fileID: 0}
