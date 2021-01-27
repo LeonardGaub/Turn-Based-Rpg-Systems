@@ -17,6 +17,4 @@ MonoBehaviour:
     description: Ask how Nico are
   rewards:
   - amount: 1
-    item: {fileID: 11400000, guid: 4bb0d5407e245ba4aa73580d0af1eb89, type: 2}
-  - amount: 0
-    item: {fileID: 0}
+    item: {fileID: 11400000, guid: 23bf6104fb5aab04c8e93efd372d97e6, type: 2}
