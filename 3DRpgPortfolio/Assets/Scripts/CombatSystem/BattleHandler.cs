@@ -3,56 +3,59 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class BattleHandler : MonoBehaviour
+namespace Rpg.BattleSystem
 {
-    List<Actor> players = new List<Actor>();
-    List<Actor> enemies = new List<Actor>();
-    enum BattleState
+    public class BattleHandler : MonoBehaviour
     {
-        WaitingForInput,
-        Busy
-    }
-    public static BattleHandler instance;
-
-    private BattleState state;
-
-    private void Awake()
-    {
-        instance = this;
-        players.Add(new Actor());
-        players.Add(new Actor());
-        players.Add(new Actor());
-    }
-
-    private void Start()
-    {
-        StartCoroutine(PlayerTurn());
-    }
-
-    private void Update()
-    {
-        switch (state)
+        List<Actor> players = new List<Actor>();
+        List<Actor> enemies = new List<Actor>();
+        enum BattleState
         {
-            case BattleState.WaitingForInput:
-                break;
-            case BattleState.Busy:
-                break;
+            WaitingForInput,
+            Busy
         }
-    }
+        public static BattleHandler instance;
 
-    private IEnumerator PlayerTurn()
-    {
-        foreach (Actor player in players)
+        private BattleState state;
+
+        private void Awake()
         {
-            yield return null;
-            //yield return player.StartCoroutine(player.ActionFinshed());
+            instance = this;
+            players.Add(new Actor());
+            players.Add(new Actor());
+            players.Add(new Actor());
         }
-    }
 
-    public void StartBattle(Actor[] players, Actor[] enemies)
-    {
-        state = BattleState.WaitingForInput;
-        this.players = players.ToList();
-        this.enemies = enemies.ToList();
+        private void Start()
+        {
+            StartCoroutine(PlayerTurn());
+        }
+
+        private void Update()
+        {
+            switch (state)
+            {
+                case BattleState.WaitingForInput:
+                    break;
+                case BattleState.Busy:
+                    break;
+            }
+        }
+
+        private IEnumerator PlayerTurn()
+        {
+            foreach (Actor player in players)
+            {
+                yield return null;
+                //yield return player.StartCoroutine(player.ActionFinshed());
+            }
+        }
+
+        public void StartBattle(Actor[] players, Actor[] enemies)
+        {
+            state = BattleState.WaitingForInput;
+            this.players = players.ToList();
+            this.enemies = enemies.ToList();
+        }
     }
 }

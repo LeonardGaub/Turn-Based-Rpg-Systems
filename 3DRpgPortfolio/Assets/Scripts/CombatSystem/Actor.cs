@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Actor : MonoBehaviour
+namespace Rpg.BattleSystem
 {
-    public IEnumerable ActionFinshed()
+    public class Actor : MonoBehaviour
     {
-        print("Action");
-        yield return StartCoroutine(WaitForAction());
-    }
-    private IEnumerator WaitForAction()
-    {
-        print("test");
-        new WaitUntil(() => Input.GetKeyDown(KeyCode.B));
-        Debug.Log("Hey");
-        return null;
+        public IEnumerable ActionFinshed()
+        {
+            print("Action");
+            yield return StartCoroutine(WaitForAction());
+        }
+        private IEnumerator WaitForAction()
+        {
+            print("test");
+            new WaitUntil(() => Input.GetKeyDown(KeyCode.B));
+            Debug.Log("Hey");
+            return null;
+        }
     }
 }
