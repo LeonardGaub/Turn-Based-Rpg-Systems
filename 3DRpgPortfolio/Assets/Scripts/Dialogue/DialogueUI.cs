@@ -7,6 +7,7 @@ public class DialogueUI : MonoBehaviour
 {
     private PlayerDialogue _playerDialogue;
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private TextMeshProUGUI speakerText;
     [SerializeField] private Button nextButton;
     
     [SerializeField] private Transform choiceParent;
@@ -30,6 +31,8 @@ public class DialogueUI : MonoBehaviour
         
         choiceParent.gameObject.SetActive(_playerDialogue.IsChoosing());
         textFieldParent.gameObject.SetActive(!_playerDialogue.IsChoosing());
+        speakerText.text = _playerDialogue.GetSpeaker();
+        Debug.Log(_playerDialogue.GetSpeaker());
         if (_playerDialogue.IsChoosing())
         {
             DestroyChoiceButtons();

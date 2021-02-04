@@ -595,6 +595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueText: {fileID: 634621851759612409}
+  speakerText: {fileID: 3576862988533647478}
   nextButton: {fileID: 8740403520856803975}
   choiceParent: {fileID: 6448232219621217961}
   textFieldParent: {fileID: 5576037680034318414}

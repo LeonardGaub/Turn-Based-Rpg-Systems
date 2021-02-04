@@ -36,6 +36,16 @@ public class PlayerDialogue : MonoBehaviour
         return _currentNode != null ? _currentNode.GetText() : " ";
     }
 
+    public string GetSpeaker()
+    {
+        if (!IsChoosing())
+        {
+            return _currentNode != null ? _currentNode.GetSpeaker().ToString() : " ";
+        }
+
+        return _currentNode != null ? "Player" : " ";
+    }
+
     public IEnumerable<DialogueNode> GetChoices()
     {
         return FilterOnCondition(_currentDialogue.GetAllPlayerChildren(_currentNode));

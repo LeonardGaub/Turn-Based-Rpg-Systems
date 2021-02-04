@@ -11,6 +11,18 @@ namespace Rpg.Saving
 {
     public class SavingSystem : MonoBehaviour
     {
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                Save("sav.data");
+            }
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                Load("sav.data");
+            }
+        }
         public IEnumerator LoadLastScene(string saveFile)
         {
             Dictionary<string, object> state = LoadFile(saveFile);

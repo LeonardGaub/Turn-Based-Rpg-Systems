@@ -27,6 +27,16 @@ public class QuestList : MonoBehaviour, ISaveable, IPredicateEvaluator
         onUpdate?.Invoke();
     }
 
+    private void RemoveQuest(QuestStatus questToRemove)
+    {
+        if (!HasQuest(questToRemove.GetQuest()))
+        {
+            return;
+        }
+        statuses.Remove(questToRemove);
+        onUpdate?.Invoke();
+    }
+
     public bool HasQuest(Quest quest)
     {
         return GetQuestStatus(quest) != null;
@@ -43,6 +53,7 @@ public class QuestList : MonoBehaviour, ISaveable, IPredicateEvaluator
         if (status.IsComplete())
         {
             GiveReward(quest);
+            RemoveQuest(GetQuestStatus(quest));
         }
         onUpdate?.Invoke();
     }
@@ -75,6 +86,7 @@ public class QuestList : MonoBehaviour, ISaveable, IPredicateEvaluator
 
     public object CaptureState()
     {
+        Debug.Log("Save Staus");
         List<object> state = new List<object>();
         foreach (var questStatus in statuses)
         {
@@ -86,6 +98,7 @@ public class QuestList : MonoBehaviour, ISaveable, IPredicateEvaluator
 
     public void RestoreState(object state)
     {
+        Debug.Log("Restore Status");
         List<object> stateList = state as List<object>;
         if (stateList == null) return;
         
@@ -94,8 +107,7 @@ public class QuestList : MonoBehaviour, ISaveable, IPredicateEvaluator
         {
             statuses.Add(new QuestStatus(objectState));
         }
-
-
+        onUpdate?.Invoke();
     }
 
     public bool? Evaluate(string predicate, string[] parameters)
