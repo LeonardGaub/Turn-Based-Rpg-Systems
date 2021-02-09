@@ -1,52 +1,77 @@
 ﻿using Rpg.BattleSystem.Actors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Rpg.BattleSystem
 {
     public class BattleHandler : MonoBehaviour
     {
-        List<Actor> players = new List<Actor>();
-        List<Actor> enemies = new List<Actor>();
-        private int counter;
+        #region Singleton
+        private static BattleHandler instance;
+        public static BattleHandler Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = GameObject.FindObjectOfType<BattleHandler>();
+                };
+                return instance;
+            }
+        }
+        #endregion
+        public static Action<PlayerActor> onNextCharacter;
+        public BattleData data;
+   
 
         List<Actor> characters = new List<Actor>();
+       
+        private int counter;
 
-        private void Start()
+        private void Awake()
         {
-            print("Start");
-            StartBattle();
+            DontDestroyOnLoad(this);
+            Actor.OnFinished += NextCharacter;
+        }
+
+
+        public void SetUpBattle(List<PlayerActor> players, List<EnemyActor> enemies)
+        {
+            data.ClearLists();
+            foreach(PlayerActor player in players)
+            {
+                data.players.Add(player);
+            }
+            
+            foreach (EnemyActor enemy in enemies)
+            {
+                data.enemies.Add(enemy);
+            }
+            SceneManager.LoadScene(1);
         }
 
         public void StartBattle()
         {
-            Actor.OnFinished += NextCharacter;
-            foreach (PlayerActor playerActor in GetComponents<PlayerActor>())
-            {
-                players.Add(playerActor);
-            }
-            foreach (EnemyActor enemyActor in GetComponents<EnemyActor>())
-            {
-                enemies.Add(enemyActor);
-            }
-            counter = 0;
+            counter = -1;
             SetUpCharacters();
-            characters[counter]?.StartTurn();
+            NextCharacter();
         }
 
         private void SetUpCharacters()
         {
             characters.Clear();
-            foreach (PlayerActor player in players)
+            foreach (PlayerActor player in data.spawnedPlayers)
             {
-                player.SetUp(enemies.Cast<EnemyActor>().ToList(), this);
+                player.SetUp(data.enemies.Cast<EnemyActor>().ToList(), this);
             }
-            foreach (EnemyActor enemy in enemies)
+            foreach (EnemyActor enemy in data.spawnedEnemies)
             {
-                enemy.SetUp(players);
+                enemy.SetUp(data.players);
             }
-            characters = players.Union(enemies).ToList();
+            characters = data.spawnedPlayers.Union(data.spawnedEnemies).ToList();
             characters = characters.OrderByDescending(characters => characters.Data.Speed).ToList();   
         }
 
@@ -56,6 +81,10 @@ namespace Rpg.BattleSystem
             if (characters.Count > counter)
             {
                 characters[counter].StartTurn();
+                if (characters[counter] is PlayerActor)
+                {
+                    onNextCharacter.Invoke(characters[counter] as PlayerActor);
+                }
                 return;
             }
             EndTurn();
@@ -67,6 +96,7 @@ namespace Rpg.BattleSystem
             if (IsBattleOver())
             {
                 print("Battle Over");
+                SceneManager.LoadScene(0);
                 return;
             }
             SetUpCharacters();
@@ -82,22 +112,24 @@ namespace Rpg.BattleSystem
             {
                 if (character is PlayerActor)
                 {
-                    players.Remove(character);
+                    data.spawnedPlayers.Remove(character);
+                    Destroy(character.gameObject);
                 }
                 if(character is EnemyActor)
                 {
-                    enemies.Remove(character);
+                    data.spawnedEnemies.Remove(character);
+                    Destroy(character.gameObject);
                 }
             }
         }
 
         private bool IsBattleOver()
         {
-            if (players.Count <= 0)
+            if (data.spawnedPlayers.Count <= 0)
             {
                 return true;
             }
-            if(enemies.Count <= 0)
+            if(data.spawnedEnemies.Count <= 0)
             {
                 return true;
             }

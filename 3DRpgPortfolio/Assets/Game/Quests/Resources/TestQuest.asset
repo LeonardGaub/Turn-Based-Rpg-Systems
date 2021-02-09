@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectives:
   - refrence: a
-    description: Ask how Nico are
+    description: Ask how Nico is doing
   rewards:
   - amount: 1
     item: {fileID: 11400000, guid: 23bf6104fb5aab04c8e93efd372d97e6, type: 2}

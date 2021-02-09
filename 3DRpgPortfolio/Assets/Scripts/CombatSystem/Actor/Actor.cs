@@ -2,25 +2,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rpg.BattleSystem.Actions;
 
 namespace Rpg.BattleSystem.Actors
 {
     public class Actor : MonoBehaviour
     {
-        [SerializeField] private ActorData data;
-        protected List<BaseAction> abilities = new List<BaseAction>();
+        [SerializeField] protected ActorData data;
+        public ActorData Data => data;
+       
         public static Action OnFinished;
 
-        public ActorData Data => data;
-
-        public bool isAlive => Data.Health > 0;
+        public bool isAlive => data.Health > 0;
 
         public void RecieveDamage(int dmg)
         {
-            Data.SetHealth(Data.Health - dmg);
-            Debug.Log("Health left: " + Data.Health);
+            data.SetHealth(data.Health - dmg);
+            Debug.Log("Health left: " + data.Health);
+            //Test
+            if (data.Health <= 0)
+            {
+                gameObject.SetActive(false);
+            }
         }
-
 
         public void StartTurn()
         {

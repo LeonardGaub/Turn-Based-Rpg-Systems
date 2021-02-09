@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Rpg.BattleSystem.Actions;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,11 +11,13 @@ namespace Rpg
         [SerializeField] private int defense;
         [SerializeField] private int damage;
         [SerializeField] private int speed;
+        [SerializeField] List<BaseAction> abilities = new List<BaseAction>();
 
         public int Health => health;
         public int Defense => defense;
         public int Damage => damage;
         public int Speed => speed;
+        public List<BaseAction> Abilities => abilities;
 
         public void SetHealth(int health)
         {

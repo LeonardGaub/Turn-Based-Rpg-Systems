@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Rpg.Saving;
+using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, ISaveable
 {
     [SerializeField]
     private float movementSpeed;
@@ -29,4 +30,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public object CaptureState()
+    {
+        SerializableVector3 position = new SerializableVector3(transform.position);
+        return position;
+    }
+
+    public void RestoreState(object state)
+    {
+        var loadedPosition = state as SerializableVector3;
+        if (loadedPosition != null)
+        {
+            transform.position = loadedPosition.ToVector();
+        }
+    }
 }

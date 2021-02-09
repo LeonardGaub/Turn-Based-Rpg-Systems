@@ -17,8 +17,7 @@ public class DialogueUI : MonoBehaviour
 
     private void Start()
     {
-        _playerDialogue = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDialogue>();
-        print(_playerDialogue);    
+        _playerDialogue = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDialogue>();  
         _playerDialogue.OnDialogueUpdated += RedrawUi;
         nextButton.onClick.AddListener(OnNextButtonClick);
         RedrawUi();
