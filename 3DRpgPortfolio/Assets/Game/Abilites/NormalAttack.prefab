@@ -43,5 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d75e4cb9ec3f430478d4a5760f4f460b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackStartPoint: 1
-  animTrigger: Test
+  attackStartPoint: 0
+  animTrigger: NormalAttack

@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackStartPoint: 1
-  animTrigger: Test
+  animTrigger: NormalAttack

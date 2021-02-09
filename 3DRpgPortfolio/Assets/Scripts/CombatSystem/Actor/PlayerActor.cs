@@ -9,22 +9,23 @@ namespace Rpg.BattleSystem.Actors
 {
     public class PlayerActor : Actor
     {
-        BattleHandler battleHandler;
         List<EnemyActor> enemies;
         public static List<EnemyActor> availableEnemies;
 
         Animator anim;
         Actor target;
         BaseAction action;
+        PlayerAnimations playerAnim;
 
+        private Action OnDestinationReached;
         private bool attacking;
+        Vector3 destination;
 
         public void SetUp(List<EnemyActor> enemies, BattleHandler battleHandler)
         {
-            anim = GetComponent<Animator>();
+            playerAnim = GetComponent<PlayerAnimations>();
             this.enemies = enemies;
             availableEnemies = enemies;
-            this.battleHandler = battleHandler;
         }
 
         public override IEnumerator Turn()
@@ -37,33 +38,68 @@ namespace Rpg.BattleSystem.Actors
                 yield break;
             }
             yield return new WaitUntil(() => action != null && target != null);
-            attacking = true;
+            Attack(() => 
+            {
+                ClearAttack();
+                EndTurn();  });
         }
 
         private void Update()
         {
             if (action == null || target == null || attacking == false) { return; }
-            switch (action.attackStartPoint)
+            if (attacking)
             {
-                case AttackStartPoint.OnEnemy:
-                    break;
-                case AttackStartPoint.OnSpot:
-                    anim.SetTrigger(action.animTrigger);
-                    attacking = false;
-                    break;
+                if (action.attackStartPoint == AttackStartPoint.OnEnemy)
+                {
+
+                    float slideSpeed = 10f;
+                    transform.position += (destination - transform.position) * slideSpeed * Time.deltaTime;
+
+                    float reachedDistance = 1f;
+                    if (Vector3.Distance(GetPosition(), destination) < reachedDistance)
+                    {
+                        OnDestinationReached();
+                    }
+                }
+                else if (action.attackStartPoint == AttackStartPoint.OnSpot)
+                {
+                    OnDestinationReached();
+                }
             }
         }
 
-        private void Attack()
+        private void Attack(Action OnAttackComplete)
         {
-            action.Execute(this, target);
+            Vector3 slideTargetPosition = target.GetPosition() - new Vector3(0,0, 1);
+            print(slideTargetPosition);
+            Vector3 startingPosition = transform.position;
+
+            SlideToPosition(slideTargetPosition, () => {
+                attacking = false;
+                playerAnim.PlayAnimation(action.animTrigger, () => {
+                    action.Execute(this, target);
+                    SlideToPosition(startingPosition, () => {
+                        attacking = false;
+                        //characterBase.PlayAnimIdle(attackDir);
+                        OnAttackComplete.Invoke();
+                    });
+                });
+            });
         }
 
-        private void AnimationFinished()
+        private void SlideToPosition(Vector3 destination, Action OnDestinationReached)
         {
-            Attack();
-            ClearAttack();
-            EndTurn();
+            this.destination = destination;
+            this.OnDestinationReached = OnDestinationReached;
+            attacking = true;
+            if (destination.x > 0)
+            {
+                //characterBase.PlayAnimSlideRight();
+            }
+            else
+            {
+                //characterBase.PlayAnimSlideLeft();
+            }
         }
 
 
@@ -75,16 +111,12 @@ namespace Rpg.BattleSystem.Actors
 
         public void OnActionChoose(BaseAction action)
         {
-            print("Action");
             this.action = action;
-            print(action);
         }
 
         public void OnTargetChoose(Actor target)
         {
-            print("Target");
             this.target = target;
-            print(target);
         }
     }
 }

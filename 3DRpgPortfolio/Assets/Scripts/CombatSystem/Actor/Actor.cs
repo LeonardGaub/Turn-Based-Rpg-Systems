@@ -39,5 +39,10 @@ namespace Rpg.BattleSystem.Actors
         {
             OnFinished.Invoke();
         }
+
+        public Vector3 GetPosition()
+        {
+            return transform.position;
+        }
     }
 }
