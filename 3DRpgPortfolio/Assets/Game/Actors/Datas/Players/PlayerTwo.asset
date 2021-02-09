@@ -15,6 +15,6 @@ MonoBehaviour:
   health: 10
   defense: 0
   damage: 5
-  speed: 4
+  speed: 10
   abilities:
   - {fileID: 311378965664537781, guid: 753b22e405975f24bac382292756f41d, type: 3}

@@ -9,8 +9,7 @@ namespace Rpg.BattleSystem.Actions
     {
         public override void Execute(Actor user, Actor target)
         {
-            print($"{user.Data.name} uses a normal Attack on {target.name}");
-            target.RecieveDamage(user.Data.Damage);
+            target.RecieveDamage(user.damage);
         }
     }
 }

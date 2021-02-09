@@ -1,6 +1,7 @@
 ﻿using Rpg.BattleSystem.Actions;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +15,7 @@ namespace Rpg.BattleSystem.UI
         public void SetUp(BaseAction action)
         {
             this.action = action;
-            GetComponentInChildren<Text>().text = action.name;
+            GetComponentInChildren<TextMeshProUGUI>().text = action.name;
         }
     }
 

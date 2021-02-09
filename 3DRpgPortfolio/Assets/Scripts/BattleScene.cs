@@ -16,8 +16,8 @@ namespace Rpg.BattleSystem
         void Start()
         {
             SetUpBattleScene(data.players, data.enemies);
-            BattleHandler.Instance.StartBattle();
             BattleHandler.onNextCharacter += SetUpAbilities;
+            BattleHandler.Instance.StartBattle();
         }
 
         private void SetUpBattleScene(List<Actor> players, List<Actor> enemies)

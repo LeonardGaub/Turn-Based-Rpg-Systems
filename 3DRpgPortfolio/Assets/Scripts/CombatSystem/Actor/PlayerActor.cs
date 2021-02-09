@@ -12,7 +12,6 @@ namespace Rpg.BattleSystem.Actors
         List<EnemyActor> enemies;
         public static List<EnemyActor> availableEnemies;
 
-        Animator anim;
         Actor target;
         BaseAction action;
         PlayerAnimations playerAnim;
@@ -41,7 +40,8 @@ namespace Rpg.BattleSystem.Actors
             Attack(() => 
             {
                 ClearAttack();
-                EndTurn();  });
+                EndTurn();  
+            });
         }
 
         private void Update()
@@ -55,9 +55,10 @@ namespace Rpg.BattleSystem.Actors
                     float slideSpeed = 10f;
                     transform.position += (destination - transform.position) * slideSpeed * Time.deltaTime;
 
-                    float reachedDistance = 1f;
+                    float reachedDistance = 0.1f;
                     if (Vector3.Distance(GetPosition(), destination) < reachedDistance)
                     {
+                        transform.position = destination;
                         OnDestinationReached();
                     }
                 }
@@ -70,9 +71,8 @@ namespace Rpg.BattleSystem.Actors
 
         private void Attack(Action OnAttackComplete)
         {
-            Vector3 slideTargetPosition = target.GetPosition() - new Vector3(0,0, 1);
-            print(slideTargetPosition);
-            Vector3 startingPosition = transform.position;
+            Vector3 slideTargetPosition = target.GetPosition() - new Vector3(2, 0, 0);
+            Vector3 startingPosition = GetPosition();
 
             SlideToPosition(slideTargetPosition, () => {
                 attacking = false;

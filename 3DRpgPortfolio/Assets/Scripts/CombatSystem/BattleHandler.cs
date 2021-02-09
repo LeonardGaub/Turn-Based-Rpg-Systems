@@ -23,6 +23,7 @@ namespace Rpg.BattleSystem
             }
         }
         #endregion
+
         public static Action<PlayerActor> onNextCharacter;
         public BattleData data;
    
@@ -72,19 +73,20 @@ namespace Rpg.BattleSystem
                 enemy.SetUp(data.players);
             }
             characters = data.spawnedPlayers.Union(data.spawnedEnemies).ToList();
-            characters = characters.OrderByDescending(characters => characters.Data.Speed).ToList();   
+            characters = characters.OrderByDescending(characters => characters.speed).ToList();   
         }
 
         private void NextCharacter()
         {
+            print("Next");
             counter++;
             if (characters.Count > counter)
             {
-                characters[counter].StartTurn();
                 if (characters[counter] is PlayerActor)
                 {
                     onNextCharacter.Invoke(characters[counter] as PlayerActor);
                 }
+                characters[counter].StartTurn();
                 return;
             }
             EndTurn();
@@ -101,8 +103,8 @@ namespace Rpg.BattleSystem
             }
             SetUpCharacters();
             print("Characters Left: " +characters.Count);
-            counter = 0;
-            characters[counter].StartTurn();
+            counter = -1;
+            NextCharacter();
         }
 
         private void RemoveDeadCharacters()

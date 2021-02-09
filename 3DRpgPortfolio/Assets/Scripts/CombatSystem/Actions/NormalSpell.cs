@@ -8,9 +8,8 @@ namespace Rpg.BattleSystem.Actions
     public class NormalSpell : BaseAction
     {
         public override void Execute(Actor user, Actor target)
-        {
-            print($"{user.Data.name} uses a magic Attack on {target.name}");
-            target.RecieveDamage(user.Data.Damage * 2);
+        { 
+            target.RecieveDamage(user.damage * 2);
         }
     }
 }

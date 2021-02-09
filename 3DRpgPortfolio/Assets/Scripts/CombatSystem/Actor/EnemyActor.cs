@@ -28,7 +28,6 @@ namespace Rpg.BattleSystem.Actors
 
         private void Attack()
         {
-            print("Deine Mum: " + GetPosition());
             int randomTarget = Random.Range(0, players.Count - 1);
             var randomAbility = Random.Range(0, data.Abilities.Count - 1);
             data.Abilities[randomAbility].Execute(this, players[randomTarget]);

@@ -8,19 +8,31 @@ namespace Rpg.BattleSystem.Actors
 {
     public class Actor : MonoBehaviour
     {
+        #region Stats
+        public int health;
+        public int damage;
+        public int speed;
+        #endregion
+
         [SerializeField] protected ActorData data;
         public ActorData Data => data;
        
         public static Action OnFinished;
-
         public bool isAlive => data.Health > 0;
+
+        private void Awake()
+        {
+            health = data.Health;
+            damage = data.Damage;
+            speed = data.Speed;
+        }
 
         public void RecieveDamage(int dmg)
         {
-            data.SetHealth(data.Health - dmg);
-            Debug.Log("Health left: " + data.Health);
+            health-= dmg;
+            Debug.Log("Health left: " + health);
             //Test
-            if (data.Health <= 0)
+            if (health <= 0)
             {
                 gameObject.SetActive(false);
             }
@@ -37,6 +49,7 @@ namespace Rpg.BattleSystem.Actors
 
         public void EndTurn()
         {
+            print("End Turn");
             OnFinished.Invoke();
         }
 
