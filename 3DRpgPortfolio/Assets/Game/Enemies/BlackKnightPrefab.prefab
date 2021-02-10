@@ -960,6 +960,7 @@ GameObject:
   - component: {fileID: 8394859208915104726}
   - component: {fileID: 5310530807409825438}
   - component: {fileID: 8656392564173529213}
+  - component: {fileID: 7160082015357860909}
   m_Layer: 0
   m_Name: BlackKnightPrefab
   m_TagString: Untagged
@@ -1014,7 +1015,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a43eec8b8ca6b7f4a9d9cc5fc24ef5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
+  damage: 0
+  speed: 0
   data: {fileID: 11400000, guid: f10371868d3b1404e80b1968a64e1c96, type: 2}
+--- !u!114 &7160082015357860909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3652629314334163347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bdaa34b503a7c74098b9cfcdc44b462, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3800165500895801979
 GameObject:
   m_ObjectHideFlags: 0

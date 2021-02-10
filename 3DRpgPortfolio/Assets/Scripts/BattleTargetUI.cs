@@ -16,7 +16,7 @@ namespace Rpg.BattleSystem.UI
             for (int i = 0; i < enemies.Count; i++)
             {
                 TargetButton targetButton = Instantiate(targetButtonPrefab, targetContent.transform);
-                targetButton.SetUp(BattleHandler.Instance.data.spawnedEnemies[i] as EnemyActor);
+                targetButton.SetUp(BattleHandler.GetAliveEnemies()[i]);
 
                 targetButton.GetComponent<Button>().onClick.AddListener(delegate { player.OnTargetChoose(targetButton.Enemy); });
                 targetButton.GetComponent<Button>().onClick.AddListener(() => this.gameObject.SetActive(false));

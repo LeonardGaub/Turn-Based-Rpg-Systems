@@ -17,6 +17,8 @@ namespace Rpg.BattleSystem
         {
             SetUpBattleScene(data.players, data.enemies);
             BattleHandler.onNextCharacter += SetUpAbilities;
+            BattleHandler.onBattleOver += RemoveListeners;
+
             BattleHandler.Instance.StartBattle();
         }
 
@@ -38,6 +40,12 @@ namespace Rpg.BattleSystem
         {
             battleUI.BattleAbilityUI.gameObject.SetActive(true);
             battleUI.BattleAbilityUI.SetUpPlayerAbilities(player);
+        }
+
+        private void RemoveListeners()
+        {
+            BattleHandler.onNextCharacter -= SetUpAbilities;
+            BattleHandler.onBattleOver -= RemoveListeners;
         }
     }
 

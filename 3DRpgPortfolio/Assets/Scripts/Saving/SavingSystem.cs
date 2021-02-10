@@ -11,7 +11,6 @@ namespace Rpg.Saving
 {
     public class SavingSystem : MonoBehaviour
     {
-
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.K))
@@ -21,6 +20,10 @@ namespace Rpg.Saving
             if (Input.GetKeyDown(KeyCode.L))
             {
                 Load("sav.data");
+            }
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                Delete("sav.data");
             }
         }
         public IEnumerator LoadLastScene(string saveFile)
@@ -49,6 +52,7 @@ namespace Rpg.Saving
 
         public void Load(string saveFile)
         {
+            print("Restore State :" + saveFile);
             RestoreState(LoadFile(saveFile));
         }
 

@@ -21,7 +21,7 @@ namespace Rpg.BattleSystem.UI
                 abilityButton.SetUp(player.Data.Abilities[i]);
 
                 abilityButton.GetComponent<Button>().onClick.AddListener(delegate { player.OnActionChoose(abilityButton.Action); });
-                abilityButton.GetComponent<Button>().onClick.AddListener(() => ChooseTarget(PlayerActor.availableEnemies, player));
+                abilityButton.GetComponent<Button>().onClick.AddListener(() => ChooseTarget(BattleHandler.GetAliveEnemies(), player));
             }
         }
 

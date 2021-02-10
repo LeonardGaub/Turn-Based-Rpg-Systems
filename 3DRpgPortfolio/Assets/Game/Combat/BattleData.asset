@@ -12,8 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1012c60492d495f459f168ab3ef3d84b, type: 3}
   m_Name: BattleData
   m_EditorClassIdentifier: 
-  players: []
-  enemies: []
-  spawnedPlayers: []
-  spawnedEnemies: []
-  originalPlayerPosition: {x: 0, y: 0, z: 0}
+  state: 0
+  players:
+  - {fileID: -3717794185300927724, guid: 23b6a7de981b1ad4f9354140865c538f, type: 3}
+  - {fileID: 1426711396908056984, guid: 6f06b174f8a0f14488438a842b66717a, type: 3}
+  enemies:
+  - {fileID: 8656392564173529213, guid: 448439e53ecf14741b64d23a9c3bae18, type: 3}
+  - {fileID: 8656392564173529213, guid: 448439e53ecf14741b64d23a9c3bae18, type: 3}
+  spawnedPlayers:
+  - {fileID: 0}
+  - {fileID: 0}
+  spawnedEnemies:
+  - {fileID: 0}
+  - {fileID: 0}
+  originalPlayerPosition: {x: 4.2270255, y: 4.1221194, z: -0.13935933}

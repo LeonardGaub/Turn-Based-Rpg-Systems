@@ -7,11 +7,7 @@ namespace Rpg.BattleSystem.UI
 {
     public class BattleUI : MonoBehaviour
     {
-        [Header("Ability List")]
         [SerializeField] BattleAbilityUI abilityUI;
-
-        [Space]
-        [Header("Target List")]
         [SerializeField] BattleTargetUI targetUI;
 
         public BattleTargetUI TargetUI => targetUI;

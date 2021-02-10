@@ -18,3 +18,4 @@ MonoBehaviour:
   speed: 5
   abilities:
   - {fileID: 311378965664537781, guid: 753b22e405975f24bac382292756f41d, type: 3}
+  offset: {x: -2, y: 0, z: 0}

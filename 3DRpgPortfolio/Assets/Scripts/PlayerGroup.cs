@@ -9,6 +9,8 @@ namespace Rpg.BattleSystem.Actors
         [SerializeField] List<PlayerActor> players = new List<PlayerActor>();
 
         public List<PlayerActor> Players => players;
+
+       [HideInInspector] public Vector3 originalPosition => gameObject.transform.position;
     }
 
 }

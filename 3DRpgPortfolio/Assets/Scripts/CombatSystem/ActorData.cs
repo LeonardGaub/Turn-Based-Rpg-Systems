@@ -12,7 +12,7 @@ namespace Rpg
         [SerializeField] private int damage;
         [SerializeField] private int speed;
         [SerializeField] List<BaseAction> abilities = new List<BaseAction>();
-
+        public Vector3 offset = new Vector3(0, 0, 0);
         public int Health => health;
         public int Defense => defense;
         public int Damage => damage;

@@ -6,6 +6,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = ("RPG/Combat/BattleData"))]
 public class BattleData : ScriptableObject
 {
+    public enum TransitionState
+    {
+        InBattle,
+        OutBattle,
+        InWorld
+    }
+
+    public TransitionState state;
     public List<Actor> players = new List<Actor>();
     public List<Actor> enemies = new List<Actor>();
 

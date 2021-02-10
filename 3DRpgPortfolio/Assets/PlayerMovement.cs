@@ -31,13 +31,27 @@ public class PlayerMovement : MonoBehaviour, ISaveable
         characterController.Move(moveDirection * Time.deltaTime);
     }
 
+    private void MovePlayer(Vector3 position)
+    {
+        GetComponent<CharacterController>().enabled = false;
+        transform.position = position;
+        GetComponent<CharacterController>().enabled = true;
+    }
+
     public object CaptureState()
     {
-        throw new System.NotImplementedException();
+        return new SerializableVector3(transform.position);
     }
 
     public void RestoreState(object state)
     {
-        throw new System.NotImplementedException();
+        print(state);
+        var position = state as SerializableVector3;
+        print(position.ToVector());
+        if (position != null)
+        {
+            MovePlayer(position.ToVector());
+            print(transform.position + "/" + position.ToVector());
+        }
     }
 }

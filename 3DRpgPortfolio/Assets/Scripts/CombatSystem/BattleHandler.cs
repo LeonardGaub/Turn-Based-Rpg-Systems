@@ -1,4 +1,5 @@
 ﻿using Rpg.BattleSystem.Actors;
+using Rpg.Saving;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,28 +26,40 @@ namespace Rpg.BattleSystem
         #endregion
 
         public static Action<PlayerActor> onNextCharacter;
+        public static Action onBattleOver;
         public BattleData data;
-   
+
 
         List<Actor> characters = new List<Actor>();
-       
+
         private int counter;
 
         private void Awake()
         {
             DontDestroyOnLoad(this);
             Actor.OnFinished += NextCharacter;
+
+            switch (data.state)
+            {
+                case BattleData.TransitionState.InBattle:
+                    break;
+                case BattleData.TransitionState.OutBattle:
+                    FindObjectOfType<SavingSystem>().Load("sav.data");
+                    data.state = BattleData.TransitionState.InWorld;
+                    break;
+            }
         }
 
-
-        public void SetUpBattle(List<PlayerActor> players, List<EnemyActor> enemies)
+        public void SetUpBattle(List<PlayerActor> players, List<EnemyActor> enemies, Vector3 originalPosition)
         {
             data.ClearLists();
-            foreach(PlayerActor player in players)
+            data.state = BattleData.TransitionState.InBattle;
+            data.originalPlayerPosition = originalPosition;
+            foreach (PlayerActor player in players)
             {
                 data.players.Add(player);
             }
-            
+
             foreach (EnemyActor enemy in enemies)
             {
                 data.enemies.Add(enemy);
@@ -57,31 +70,42 @@ namespace Rpg.BattleSystem
         public void StartBattle()
         {
             counter = -1;
+            SetStats();
             SetUpCharacters();
             NextCharacter();
         }
 
+
         private void SetUpCharacters()
         {
+            BuildCharacterList();
+        }
+
+        private void BuildCharacterList()
+        {
             characters.Clear();
+            characters = data.spawnedPlayers.Union(data.spawnedEnemies).ToList();
+            characters = characters.OrderByDescending(characters => characters.speed).ToList();
+        }
+
+        private void SetStats()
+        {
             foreach (PlayerActor player in data.spawnedPlayers)
             {
-                player.SetUp(data.enemies.Cast<EnemyActor>().ToList(), this);
+                player.SetUp();
             }
             foreach (EnemyActor enemy in data.spawnedEnemies)
             {
-                enemy.SetUp(data.players);
+                enemy.SetUp();
             }
-            characters = data.spawnedPlayers.Union(data.spawnedEnemies).ToList();
-            characters = characters.OrderByDescending(characters => characters.speed).ToList();   
         }
-
         private void NextCharacter()
         {
-            print("Next");
+            BuildCharacterList();
             counter++;
             if (characters.Count > counter)
             {
+                if (!characters[counter].isAlive) { NextCharacter(); return; }
                 if (characters[counter] is PlayerActor)
                 {
                     onNextCharacter.Invoke(characters[counter] as PlayerActor);
@@ -92,17 +116,43 @@ namespace Rpg.BattleSystem
             EndTurn();
         }
 
+        public static List<EnemyActor> GetAliveEnemies()
+        {
+            List<EnemyActor> availableEnemies = new List<EnemyActor>();
+            foreach (EnemyActor enemy in instance.data.spawnedEnemies)
+            {
+                if (enemy.isAlive)
+                {
+                    availableEnemies.Add(enemy);
+                }
+            }
+            return availableEnemies;
+        }
+
+        public static List<PlayerActor> GetAlivePlayers()
+        {
+            List<PlayerActor> availablePlayers = new List<PlayerActor>();
+            foreach (PlayerActor player in instance.data.spawnedPlayers)
+            {
+                if (player.isAlive)
+                {
+                    availablePlayers.Add(player);
+                }
+            }
+            return availablePlayers;
+        }
+
         public void EndTurn()
         {
             RemoveDeadCharacters();
             if (IsBattleOver())
             {
-                print("Battle Over");
+                data.state = BattleData.TransitionState.OutBattle;
+                onBattleOver.Invoke();
                 SceneManager.LoadScene(0);
-                return;
             }
-            SetUpCharacters();
-            print("Characters Left: " +characters.Count);
+            BuildCharacterList();
+            print("Characters Left: " + characters.Count);
             counter = -1;
             NextCharacter();
         }
@@ -117,7 +167,7 @@ namespace Rpg.BattleSystem
                     data.spawnedPlayers.Remove(character);
                     Destroy(character.gameObject);
                 }
-                if(character is EnemyActor)
+                if (character is EnemyActor)
                 {
                     data.spawnedEnemies.Remove(character);
                     Destroy(character.gameObject);
@@ -131,25 +181,11 @@ namespace Rpg.BattleSystem
             {
                 return true;
             }
-            if(data.spawnedEnemies.Count <= 0)
+            if (data.spawnedEnemies.Count <= 0)
             {
                 return true;
             }
             return false;
         }
-
-
-        //Actions Start Command 
-        //Actions Im Finished<Wer>
-        //List<Character> 
-        //Abarbeite Warten auf Antwort
-
-        //Zwei Gruppen 
-        //Warten auf Action
-        //Command Design Pattern
-        //Invokation List welcher Char was macht 
-        //Durcharbeiten 
-
-        //
     }
 }

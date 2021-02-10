@@ -1,4 +1,5 @@
 ﻿using Rpg.BattleSystem.Actions;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,13 +8,6 @@ namespace Rpg.BattleSystem.Actors
 {
     public class EnemyActor : Actor
     {
-        List<Actor> players;
-
-        public void SetUp(List<Actor> players)
-        {
-            this.players = players;
-        }
-
         public override IEnumerator Turn()
         {
             if (!isAlive)
@@ -22,15 +16,21 @@ namespace Rpg.BattleSystem.Actors
                 yield break; 
             }
             yield return new WaitForSeconds(1f);
-            Attack();
-            EndTurn();
+            ChooseAttack();
+            Attack(() =>
+            {
+                ClearAttack();
+                EndTurn();
+            });
         }
 
-        private void Attack()
+        private void ChooseAttack()
         {
-            int randomTarget = Random.Range(0, players.Count - 1);
-            var randomAbility = Random.Range(0, data.Abilities.Count - 1);
-            data.Abilities[randomAbility].Execute(this, players[randomTarget]);
+            var targets = BattleHandler.GetAlivePlayers();
+            target = targets[UnityEngine.Random.Range(0, targets.Count)];
+
+            var abilities = data.Abilities;
+            action = abilities[UnityEngine.Random.Range(0, abilities.Count)];
         }
     }
 }
