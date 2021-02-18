@@ -40,6 +40,7 @@ namespace Rpg.Saving
 
         public void Save(string saveFile)
         {
+            print("Test");
             Dictionary<string, object> state = LoadFile(saveFile);
             CaptureState(state);
             SaveFile(saveFile, state);
@@ -53,6 +54,10 @@ namespace Rpg.Saving
         public void Load(string saveFile)
         {
             print("Restore State :" + saveFile);
+            if(GetPathFromSaveFile(saveFile)== null)
+            {
+                return;
+            }
             RestoreState(LoadFile(saveFile));
         }
 

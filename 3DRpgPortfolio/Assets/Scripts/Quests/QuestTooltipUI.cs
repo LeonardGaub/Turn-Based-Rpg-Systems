@@ -27,7 +27,7 @@ public class QuestTooltipUI : MonoBehaviour
             }
             var newObjective = Instantiate(prefab, objectiveContainer.transform);
             
-            newObjective.GetComponentInChildren<TextMeshProUGUI>().text = objective.description;
+            newObjective.GetComponentInChildren<TextMeshProUGUI>().text = objective.description + $" ({objective.currentAmount}" + "/" + $"{objective.neededAmount})";
         }
 
         rewardText.text = GetRewardText(status.GetQuest());

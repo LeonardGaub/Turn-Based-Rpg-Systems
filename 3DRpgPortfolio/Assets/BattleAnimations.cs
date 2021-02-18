@@ -26,6 +26,21 @@ public class BattleAnimations : MonoBehaviour
         }
     }
 
+    public void PlayAnimation(string trigger, Action onComplete)
+    {
+        onAnimationComplete = onComplete;
+        anim.SetTrigger(trigger);
+        if (!CheckAnimation(trigger))
+        {
+            StartCoroutine(AnimationSavety());
+        }
+    }
+
+    public void PlayAnimation(bool boolean, string parameter)
+    {
+        anim.SetBool(parameter, boolean);
+    }
+
     private bool CheckAnimation(string paramName)
     {
         foreach (AnimatorControllerParameter param in anim.parameters)

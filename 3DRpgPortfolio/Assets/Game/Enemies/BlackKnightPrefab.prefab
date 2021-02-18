@@ -1015,9 +1015,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a43eec8b8ca6b7f4a9d9cc5fc24ef5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  damage: 0
-  speed: 0
+  health: 50
+  damage: 5
+  defense: 0
+  speed: 5
   data: {fileID: 11400000, guid: f10371868d3b1404e80b1968a64e1c96, type: 2}
 --- !u!114 &7160082015357860909
 MonoBehaviour:

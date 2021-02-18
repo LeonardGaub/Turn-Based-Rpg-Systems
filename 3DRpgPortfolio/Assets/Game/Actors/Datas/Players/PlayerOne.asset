@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962d231a8c097af438a8a91f9fd59acf, type: 3}
   m_Name: PlayerOne
   m_EditorClassIdentifier: 
-  health: 10
-  defense: 0
-  damage: 5
-  speed: 10
+  baseHealth: 10
+  baseDefense: 0
+  baseDamage: 50
+  baseSpeed: 5
   abilities:
   - {fileID: 311378965664537781, guid: 753b22e405975f24bac382292756f41d, type: 3}
   - {fileID: 2909064065762936716, guid: f2468d01fadc7044ca52777c532dac5f, type: 3}

@@ -69,8 +69,8 @@ MonoBehaviour:
   - 8ccc4bc9-5c58-42d6-b842-92dc48b48e4e
   rect:
     serializedVersion: 2
-    x: 573
-    y: 238
+    x: 583
+    y: 226
     width: 200
     height: 100
   speaker: 1
@@ -101,7 +101,8 @@ MonoBehaviour:
     height: 100
   speaker: 0
   onEnterAction: []
-  onExitAction: []
+  onExitAction:
+  - GetKillQuest
   condition:
     and: []
 --- !u!114 &11400000

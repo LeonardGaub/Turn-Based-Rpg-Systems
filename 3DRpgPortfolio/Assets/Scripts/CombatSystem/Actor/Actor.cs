@@ -4,18 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rpg.BattleSystem.Actions;
 using System.Linq;
+using Rpg.Saving;
 
 namespace Rpg.BattleSystem.Actors
 {
-    public class Actor : MonoBehaviour
+    public class Actor : MonoBehaviour, ISaveable
     {
         #region Stats
         public int health;
         public int damage;
+        public int defense;
         public int speed;
         #endregion
 
         [SerializeField] protected ActorData data;
+        
         public ActorData Data => data;
 
         public static Action OnFinished;
@@ -32,11 +35,15 @@ namespace Rpg.BattleSystem.Actors
 
         public void SetUp()
         {
-            health = data.Health;
-            damage = data.Damage;
-            speed = data.Speed;
-
             anim = GetComponent<BattleAnimations>();
+        }
+
+        private void SetStats(int hp, int dmg, int def, int sp)
+        {
+            health = hp;
+            damage = dmg;
+            defense = def;
+            speed = sp;
         }
 
         private void Update()
@@ -68,10 +75,14 @@ namespace Rpg.BattleSystem.Actors
         public void RecieveDamage(int dmg)
         {
             health-= dmg;
-            anim.PlayAnimation("GetHit");
+            
             if (health <= 0)
             {
-                gameObject.SetActive(false);
+                anim.PlayAnimation("Death", () => { gameObject.SetActive(false); });
+            }
+            else
+            {
+                anim.PlayAnimation("GetHit");
             }
         }
 
@@ -102,6 +113,7 @@ namespace Rpg.BattleSystem.Actors
             SlideToPosition(slideTargetPosition, () =>
             {
                 attacking = false;
+                anim.PlayAnimation(attacking, "Attacking");
                 anim.PlayAnimation(action.animTrigger, () =>
                 {
                     action.Execute(this, target);
@@ -110,6 +122,7 @@ namespace Rpg.BattleSystem.Actors
                     SlideToPosition(startingPosition, () =>
                     {
                         attacking = false;
+                        anim.PlayAnimation(attacking, "Attacking");
                         OnAttackComplete.Invoke();
                     });
                 });
@@ -120,14 +133,7 @@ namespace Rpg.BattleSystem.Actors
             this.destination = destination;
             this.OnDestinationReached = OnDestinationReached;
             attacking = true;
-            if (destination.x > 0)
-            {
-                //characterBase.PlayAnimSlideRight();
-            }
-            else
-            {
-                //characterBase.PlayAnimSlideLeft();
-            }
+            anim.PlayAnimation(attacking, "Attacking");
         }
 
         protected void ClearAttack()
@@ -135,5 +141,35 @@ namespace Rpg.BattleSystem.Actors
             action = null;
             target = null;
         }
+
+        public object CaptureState()
+        {
+            return new ActorStats(health, damage, defense, speed);
+        }
+
+        public void RestoreState(object state)
+        {
+            var stats = state as ActorStats;
+            if(stats != null)
+            {
+                SetStats(stats.health, stats.damage, stats.defense, stats.speed);
+            }
+        }
+    }
+}
+[Serializable]
+public class ActorStats
+{
+    public int health;
+    public int damage;
+    public int defense;
+    public int speed;
+
+    public ActorStats(int hp, int dmg, int def, int sp)
+    {
+        health = hp;
+        damage = dmg;
+        defense = def;
+        speed = sp;
     }
 }

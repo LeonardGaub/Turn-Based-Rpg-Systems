@@ -17,8 +17,8 @@ namespace Rpg.BattleSystem
             {
                 var players = other.gameObject.GetComponent<PlayerGroup>();
                 wasFought = true;
-                FindObjectOfType<SavingSystem>().Save("sav.data");
-                BattleHandler.Instance.SetUpBattle(players.Players, data.Enemies, players.originalPosition);
+                FindObjectOfType<SavingSystem>().Save("worldScene.data");
+                BattleHandler.Instance.SetUpBattle(players.Players, data.Enemies, players.originalPosition, data.Reward);
             }
         }
         public object CaptureState()
@@ -40,6 +40,5 @@ namespace Rpg.BattleSystem
                 Destroy(gameObject);
             }
         }
-
     }
 }

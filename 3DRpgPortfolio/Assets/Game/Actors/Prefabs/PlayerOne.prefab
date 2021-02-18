@@ -6163,6 +6163,7 @@ GameObject:
   - component: {fileID: 7818105257346206304}
   - component: {fileID: -3717794185300927724}
   - component: {fileID: 2845785350419155053}
+  - component: {fileID: 8953448072615317309}
   m_Layer: 0
   m_Name: PlayerOne
   m_TagString: Untagged
@@ -6273,7 +6274,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  damage: 5
+  damage: 50
+  defense: 0
   speed: 10
   data: {fileID: 11400000, guid: ac4fc16efd4250543a61117aff642ac2, type: 2}
 --- !u!114 &2845785350419155053
@@ -6288,6 +6290,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bdaa34b503a7c74098b9cfcdc44b462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8953448072615317309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7867254331898860496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c8463592fd28f2438c19bbe56474530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 848b7a83-ca4c-457d-97f6-60e95d1bc1df
 --- !u!1 &7867256631840879312
 GameObject:
   m_ObjectHideFlags: 0

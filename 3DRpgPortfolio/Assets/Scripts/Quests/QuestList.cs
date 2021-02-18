@@ -10,7 +10,7 @@ public class QuestList : MonoBehaviour, ISaveable, IPredicateEvaluator
     [SerializeField] private List<QuestStatus> statuses = new List<QuestStatus>();
 
     public event Action onUpdate;
-    
+
     public IEnumerable GetStatuses()
     {
         return statuses;
@@ -58,11 +58,22 @@ public class QuestList : MonoBehaviour, ISaveable, IPredicateEvaluator
         onUpdate?.Invoke();
     }
 
+    public void KilledEnemy(string enemy)
+    {
+        foreach(QuestStatus status in statuses)
+        {
+            if (status.GetQuest().HasObjective(enemy))
+            {
+                CompleteObjective(status.GetQuest(), enemy);
+            }
+        }
+    }
+
     private void GiveReward(Quest quest)
     {
         foreach (var reward in quest.GetRewards())
         {
-            Inventory playerInventory = GetComponent<Inventory>();
+            Inventory playerInventory = GetComponentInParent<Inventory>();
             bool wasSucess = playerInventory.AddToFirstEmptySlot(reward.item, reward.amount);
             if (!wasSucess)
             {

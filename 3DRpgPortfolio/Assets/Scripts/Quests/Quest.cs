@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Rpg.Inventories;
 using UnityEngine;
 
-[CreateAssetMenu(fileName =  "New Quest", menuName = "RPG Project/Quest", order = 0)]
+[CreateAssetMenu(fileName =  "New Quest", menuName = "RPG/Quest", order = 0)]
 public class Quest : ScriptableObject
 {
    [SerializeField] private List<Objective> objectives = new List<Objective>();
@@ -23,6 +23,13 @@ public class Quest : ScriptableObject
    {
       public string refrence;
       public string description;
+      public int currentAmount;
+      public int neededAmount;
+
+        public void Reset()
+        {
+            currentAmount = 0;
+        }
    }
    public string GetTitle()
    {
@@ -56,6 +63,18 @@ public class Quest : ScriptableObject
  
       return false;
    }
+
+    public Objective GetObjectiveFromString(string key)
+    {
+        foreach(var objective in objectives)
+        {
+            if(objective.refrence == key)
+            {
+                return objective;
+            }
+        }
+        return null;
+    }
 
    public static Quest GetByName(string questName)
    {

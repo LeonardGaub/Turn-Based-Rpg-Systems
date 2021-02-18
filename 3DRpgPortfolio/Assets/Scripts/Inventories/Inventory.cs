@@ -109,7 +109,6 @@ namespace Rpg.Inventories
         private void Awake()
         {
             slots = new InventorySlot[inventorySize];
-            AddToFirstEmptySlot(InventoryItem.GetFromID("76faf3d7-1f10-4256-a9bc-e20d7e77d23f"), 1);
         }
 
         private int FindSlot(InventoryItem item)

@@ -6812,6 +6812,7 @@ GameObject:
   - component: {fileID: 6964915066519110818}
   - component: {fileID: 1426711396908056984}
   - component: {fileID: 5763130208119489549}
+  - component: {fileID: -1947522479350746389}
   m_Layer: 0
   m_Name: PlayerTwo
   m_TagString: Untagged
@@ -6922,7 +6923,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  damage: 5
+  damage: 50
+  defense: 0
   speed: 10
   data: {fileID: 11400000, guid: 5e42cc1eccbfe824fb261c1edba1018c, type: 2}
 --- !u!114 &5763130208119489549
@@ -6937,6 +6939,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bdaa34b503a7c74098b9cfcdc44b462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-1947522479350746389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7061227512019517114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c8463592fd28f2438c19bbe56474530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 726511e5-6611-4643-a0c7-c268427f7efb
 --- !u!1 &7061237431663181476
 GameObject:
   m_ObjectHideFlags: 0

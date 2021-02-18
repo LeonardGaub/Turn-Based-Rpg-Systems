@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962d231a8c097af438a8a91f9fd59acf, type: 3}
   m_Name: PlayerTwo
   m_EditorClassIdentifier: 
-  health: 10
-  defense: 0
-  damage: 5
-  speed: 10
+  baseHealth: 15
+  baseDefense: 0
+  baseDamage: 50
+  baseSpeed: 10
   abilities:
   - {fileID: 311378965664537781, guid: 753b22e405975f24bac382292756f41d, type: 3}
   offset: {x: 2, y: 0, z: 0}

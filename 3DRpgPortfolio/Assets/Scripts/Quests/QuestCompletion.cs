@@ -9,7 +9,7 @@ public class QuestCompletion : MonoBehaviour
 
     public void CompleteObjective()
     {
-        QuestList questList = GameObject.FindGameObjectWithTag("Player").GetComponent<QuestList>();
+        QuestList questList = FindObjectOfType<QuestList>();
         questList.CompleteObjective(quest, objective);
     }
 }

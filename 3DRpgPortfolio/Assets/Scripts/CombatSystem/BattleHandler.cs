@@ -1,4 +1,6 @@
 ﻿using Rpg.BattleSystem.Actors;
+using Rpg.BattleSystem.Reward;
+using Rpg.Inventories;
 using Rpg.Saving;
 using System;
 using System.Collections.Generic;
@@ -27,6 +29,7 @@ namespace Rpg.BattleSystem
 
         public static Action<PlayerActor> onNextCharacter;
         public static Action onBattleOver;
+        public static Action<bool,RewardData> onUIShow;
         public BattleData data;
 
 
@@ -34,27 +37,33 @@ namespace Rpg.BattleSystem
 
         private int counter;
 
-        private void Awake()
+        private void Start()
         {
             DontDestroyOnLoad(this);
             Actor.OnFinished += NextCharacter;
 
             switch (data.state)
             {
-                case BattleData.TransitionState.InBattle:
+                case BattleData.TransitionState.OutBattleWon:
+                    FindObjectOfType<SavingSystem>().Load("worldScene.data");
+                    data.state = BattleData.TransitionState.InWorld;
+                    GiveRewards(data.reward);
+                    UpdateQuestList();
                     break;
-                case BattleData.TransitionState.OutBattle:
+                case BattleData.TransitionState.OutBattleLost:
                     FindObjectOfType<SavingSystem>().Load("sav.data");
                     data.state = BattleData.TransitionState.InWorld;
                     break;
+
             }
         }
 
-        public void SetUpBattle(List<PlayerActor> players, List<EnemyActor> enemies, Vector3 originalPosition)
+        public void SetUpBattle(List<PlayerActor> players, List<EnemyActor> enemies, Vector3 originalPosition, RewardData reward)
         {
             data.ClearLists();
             data.state = BattleData.TransitionState.InBattle;
             data.originalPlayerPosition = originalPosition;
+            data.reward = reward;
             foreach (PlayerActor player in players)
             {
                 data.players.Add(player);
@@ -147,14 +156,18 @@ namespace Rpg.BattleSystem
             RemoveDeadCharacters();
             if (IsBattleOver())
             {
-                data.state = BattleData.TransitionState.OutBattle;
-                onBattleOver.Invoke();
-                SceneManager.LoadScene(0);
+                BattleOver(data.spawnedPlayers.Count > 0);
             }
             BuildCharacterList();
-            print("Characters Left: " + characters.Count);
             counter = -1;
             NextCharacter();
+        }
+
+        private void BattleOver(bool playersWon)
+        {
+            FindObjectOfType<SavingSystem>().Save("battle.sav");
+            onBattleOver?.Invoke();
+            onUIShow.Invoke(playersWon, data.reward);
         }
 
         private void RemoveDeadCharacters()
@@ -186,6 +199,23 @@ namespace Rpg.BattleSystem
                 return true;
             }
             return false;
+        }
+
+        private void GiveRewards(RewardData reward)
+        {
+            foreach(var item in reward.Items)
+            {
+                FindObjectOfType<Inventory>().AddToFirstEmptySlot(item, 1);
+            }
+            print(reward.Xp);
+        }
+
+        private void UpdateQuestList()
+        {
+            foreach(EnemyActor enemy in data.enemies)
+            {
+                FindObjectOfType<QuestList>().KilledEnemy(enemy.Data.objectiveString);
+            }
         }
     }
 }

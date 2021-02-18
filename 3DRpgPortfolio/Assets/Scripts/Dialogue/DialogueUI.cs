@@ -31,7 +31,6 @@ public class DialogueUI : MonoBehaviour
         choiceParent.gameObject.SetActive(_playerDialogue.IsChoosing());
         textFieldParent.gameObject.SetActive(!_playerDialogue.IsChoosing());
         speakerText.text = _playerDialogue.GetSpeaker();
-        Debug.Log(_playerDialogue.GetSpeaker());
         if (_playerDialogue.IsChoosing())
         {
             DestroyChoiceButtons();

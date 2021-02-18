@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Rpg.Saving;
+using UnityEngine;
 
 [Serializable]
 public class QuestStatus
@@ -47,7 +48,12 @@ public class QuestStatus
     {
         if (_quest.HasObjective(objective))
         {
-            _completedObjectives.Add(objective);   
+            var obj = _quest.GetObjectiveFromString(objective);
+            obj.currentAmount++;
+            if(obj.currentAmount >= obj.neededAmount)
+            {
+                _completedObjectives.Add(objective);
+            }
         }
     }
 

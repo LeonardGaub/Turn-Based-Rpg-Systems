@@ -15,4 +15,4 @@ MonoBehaviour:
   enemies:
   - {fileID: 8656392564173529213, guid: 448439e53ecf14741b64d23a9c3bae18, type: 3}
   - {fileID: 8656392564173529213, guid: 448439e53ecf14741b64d23a9c3bae18, type: 3}
-  wasFought: 0
+  reward: {fileID: 11400000, guid: 18bd11851e99f2146967bce2b8c8f062, type: 2}

@@ -1,5 +1,6 @@
 ﻿using Rpg.BattleSystem.Actors;
 using Rpg.BattleSystem.UI;
+using Rpg.Saving;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace Rpg.BattleSystem
         void Start()
         {
             SetUpBattleScene(data.players, data.enemies);
+            FindObjectOfType<SavingSystem>().Load("battle.sav");
             BattleHandler.onNextCharacter += SetUpAbilities;
             BattleHandler.onBattleOver += RemoveListeners;
 
