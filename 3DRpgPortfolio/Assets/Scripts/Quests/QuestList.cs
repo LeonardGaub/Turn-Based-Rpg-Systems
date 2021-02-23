@@ -23,6 +23,10 @@ public class QuestList : MonoBehaviour, ISaveable, IPredicateEvaluator
             return;
         }
         QuestStatus newStatus = new QuestStatus(newQuest);
+        foreach(var objective in newStatus.GetQuest().GetObjectives())
+        {
+            objective.Reset();
+        }
         statuses.Add(newStatus);
         onUpdate?.Invoke();
     }

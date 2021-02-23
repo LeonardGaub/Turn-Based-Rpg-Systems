@@ -5,24 +5,19 @@ using UnityEngine;
 using Rpg.BattleSystem.Actions;
 using System.Linq;
 using Rpg.Saving;
+using Rpg.BattleSystem.Effects;
 
 namespace Rpg.BattleSystem.Actors
 {
     public class Actor : MonoBehaviour, ISaveable
     {
-        #region Stats
-        public int health;
-        public int damage;
-        public int defense;
-        public int speed;
-        #endregion
-
         [SerializeField] protected ActorData data;
-        
+        private List<BaseEffect> currentEffects = new List<BaseEffect>();
+
         public ActorData Data => data;
 
         public static Action OnFinished;
-        public bool isAlive => health > 0;
+        public bool isAlive => data.health > 0;
 
         protected Actor target;
         protected BaseAction action;
@@ -36,15 +31,9 @@ namespace Rpg.BattleSystem.Actors
         public void SetUp()
         {
             anim = GetComponent<BattleAnimations>();
+            currentEffects.Clear();
         }
 
-        private void SetStats(int hp, int dmg, int def, int sp)
-        {
-            health = hp;
-            damage = dmg;
-            defense = def;
-            speed = sp;
-        }
 
         private void Update()
         {
@@ -74,15 +63,25 @@ namespace Rpg.BattleSystem.Actors
 
         public void RecieveDamage(int dmg)
         {
-            health-= dmg;
+            data.health-= dmg;
+            FindObjectOfType<DamagePopUpUI>().SpawnDamagePopUp(dmg, this);
             
-            if (health <= 0)
+            if (data.health <= 0)
             {
                 anim.PlayAnimation("Death", () => { gameObject.SetActive(false); });
             }
             else
             {
                 anim.PlayAnimation("GetHit");
+            }
+        }
+
+        public void Heal(int amount)
+        {
+            data.health += amount;
+            if(data.health > data.maxHealth)
+            {
+                data.health = data.maxHealth;
             }
         }
 
@@ -98,7 +97,39 @@ namespace Rpg.BattleSystem.Actors
 
         public void EndTurn()
         {
+            InvokeEffects();
             OnFinished.Invoke();
+        }
+
+        public void AddEffect(BaseEffect effect)
+        {
+            if (!currentEffects.Contains(effect))
+            {
+                currentEffects.Add(effect);
+            }
+        }
+
+        public void RemoveEffect(BaseEffect effect)
+        {
+            if (currentEffects.Contains(effect))
+            {
+                currentEffects.Remove(effect);
+            }
+        }
+
+        public void InvokeEffects()
+        {
+            List<BaseEffect> invokedEffects = new List<BaseEffect>();
+            foreach(var effect in currentEffects)
+            {
+                effect.Invoke(this);
+                invokedEffects.Add(effect);
+            }
+
+            foreach(var effect in invokedEffects)
+            {
+                effect.Tick(this);
+            }
         }
 
         public Vector3 GetPosition()
@@ -142,9 +173,14 @@ namespace Rpg.BattleSystem.Actors
             target = null;
         }
 
+        public virtual void CopyData()
+        {
+
+        }
+
         public object CaptureState()
         {
-            return new ActorStats(health, damage, defense, speed);
+            return new ActorStats(data.health, data.damage, data.speed);
         }
 
         public void RestoreState(object state)
@@ -152,7 +188,7 @@ namespace Rpg.BattleSystem.Actors
             var stats = state as ActorStats;
             if(stats != null)
             {
-                SetStats(stats.health, stats.damage, stats.defense, stats.speed);
+                data.SetStats(stats.health, stats.damage, stats.speed);
             }
         }
     }
@@ -162,14 +198,12 @@ public class ActorStats
 {
     public int health;
     public int damage;
-    public int defense;
     public int speed;
 
-    public ActorStats(int hp, int dmg, int def, int sp)
+    public ActorStats(int hp, int dmg, int sp)
     {
         health = hp;
         damage = dmg;
-        defense = def;
         speed = sp;
     }
 }

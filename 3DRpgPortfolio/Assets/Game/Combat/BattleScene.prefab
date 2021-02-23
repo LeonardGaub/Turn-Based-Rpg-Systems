@@ -319,6 +319,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4062718848950151018, guid: caf0c89919596854c8e42b76f70c03b2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4062718848950151018, guid: caf0c89919596854c8e42b76f70c03b2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 220.59943
+      objectReference: {fileID: 0}
+    - target: {fileID: 4062718848950151018, guid: caf0c89919596854c8e42b76f70c03b2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 93.874825
+      objectReference: {fileID: 0}
     - target: {fileID: 4092606637967979834, guid: caf0c89919596854c8e42b76f70c03b2, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 3.6500092
@@ -338,6 +350,10 @@ PrefabInstance:
     - target: {fileID: 4965921241885900624, guid: caf0c89919596854c8e42b76f70c03b2, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -154
+      objectReference: {fileID: 0}
+    - target: {fileID: 5301590606185051125, guid: caf0c89919596854c8e42b76f70c03b2, type: 3}
+      propertyPath: m_Text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5481096633314126504, guid: caf0c89919596854c8e42b76f70c03b2, type: 3}
       propertyPath: m_SizeDelta.y
@@ -423,6 +439,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 731.6
       objectReference: {fileID: 0}
+    - target: {fileID: 6705972183088096844, guid: caf0c89919596854c8e42b76f70c03b2, type: 3}
+      propertyPath: continueButton
+      value: 
+      objectReference: {fileID: 8493414723857765395}
     - target: {fileID: 7702509460459372366, guid: caf0c89919596854c8e42b76f70c03b2, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
@@ -475,5 +495,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b50ad935f02db484fa5f5eba93a5fc1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8493414723857765395 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3275753269339192023, guid: caf0c89919596854c8e42b76f70c03b2, type: 3}
+  m_PrefabInstance: {fileID: 6389336349917589188}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

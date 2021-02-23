@@ -24,6 +24,12 @@ namespace Rpg.BattleSystem.Actors
             });
         }
 
+        public override void CopyData()
+        {
+            var copy = Instantiate(data);
+            data = copy;
+        }
+
         private void ChooseAttack()
         {
             var targets = BattleHandler.GetAlivePlayers();

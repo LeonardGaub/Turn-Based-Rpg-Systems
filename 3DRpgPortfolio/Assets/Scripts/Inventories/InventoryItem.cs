@@ -77,6 +77,11 @@ namespace Rpg.Inventories
             return description;
         }
 
+        public virtual string GetStats()
+        {
+            return "";
+        }
+
         void ISerializationCallbackReceiver.OnBeforeSerialize()
         {
             if (string.IsNullOrWhiteSpace(itemID))

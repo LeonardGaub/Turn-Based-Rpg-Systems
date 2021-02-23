@@ -17,7 +17,7 @@ namespace Rpg.BattleSystem
             {
                 var players = other.gameObject.GetComponent<PlayerGroup>();
                 wasFought = true;
-                FindObjectOfType<SavingSystem>().Save("worldScene.data");
+                FindObjectOfType<SavingSystem>().Save("sav.data");
                 BattleHandler.Instance.SetUpBattle(players.Players, data.Enemies, players.originalPosition, data.Reward);
             }
         }

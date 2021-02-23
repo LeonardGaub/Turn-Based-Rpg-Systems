@@ -7,7 +7,6 @@ namespace Rpg.UI.Inventories
 {
     public class EquipmentSlotUI : MonoBehaviour, IItemHolder, IDragContainer<InventoryItem>
     {
-
         [SerializeField] InventoryItemIcon icon = null;
         [SerializeField] EquipLocation equipLocation = EquipLocation.Weapon;
 
@@ -18,6 +17,7 @@ namespace Rpg.UI.Inventories
             var player = GameObject.FindGameObjectWithTag("Player");
             playerEquipment = player.GetComponent<Equipment>();
             playerEquipment.equipmentUpdated += RedrawUI;
+            playerEquipment.onCharacterSwitch += RedrawUI;
         }
 
         private void Start() 

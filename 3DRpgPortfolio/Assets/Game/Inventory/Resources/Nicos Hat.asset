@@ -19,3 +19,6 @@ MonoBehaviour:
   pickup: {fileID: 0}
   stackable: 0
   allowedEquipLocation: 0
+  healthBonus: 10
+  damageBonus: 0
+  speedBonus: 0

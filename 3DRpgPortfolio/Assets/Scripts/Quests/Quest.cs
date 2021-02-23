@@ -26,6 +26,7 @@ public class Quest : ScriptableObject
       public int currentAmount;
       public int neededAmount;
 
+
         public void Reset()
         {
             currentAmount = 0;

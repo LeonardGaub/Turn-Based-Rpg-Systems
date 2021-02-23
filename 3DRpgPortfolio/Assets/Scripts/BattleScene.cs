@@ -17,7 +17,6 @@ namespace Rpg.BattleSystem
         void Start()
         {
             SetUpBattleScene(data.players, data.enemies);
-            FindObjectOfType<SavingSystem>().Load("battle.sav");
             BattleHandler.onNextCharacter += SetUpAbilities;
             BattleHandler.onBattleOver += RemoveListeners;
 
@@ -34,6 +33,8 @@ namespace Rpg.BattleSystem
             for (int i = 0; i < enemies.Count; i++)
             {
                 var enemy = Instantiate(enemies[i], enemyPositions[i].transform.position, enemyPositions[i].rotation);
+                enemy.Data.Reset();
+                enemy.CopyData();
                 data.spawnedEnemies.Add(enemy);
             }
         }

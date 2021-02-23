@@ -9,7 +9,7 @@ namespace Rpg.BattleSystem.Actions
     {
         public override void Execute(Actor user, Actor target)
         {
-            target.RecieveDamage(user.damage);
+            target.RecieveDamage(user.Data.damage);
         }
     }
 }

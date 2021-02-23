@@ -13,10 +13,15 @@ MonoBehaviour:
   m_Name: PlayerOne
   m_EditorClassIdentifier: 
   baseHealth: 10
-  baseDefense: 0
-  baseDamage: 50
-  baseSpeed: 5
+  baseDamage: 10
+  baseSpeed: 10
+  maxHealth: 50
+  health: 50
+  damage: 10
+  speed: 10
   abilities:
   - {fileID: 311378965664537781, guid: 753b22e405975f24bac382292756f41d, type: 3}
   - {fileID: 2909064065762936716, guid: f2468d01fadc7044ca52777c532dac5f, type: 3}
+  - {fileID: -1566479548900576297, guid: 186649c213d5d4b47999487423f4de72, type: 3}
   offset: {x: 2, y: 0, z: 0}
+  objectiveString: 

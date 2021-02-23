@@ -42,17 +42,17 @@ namespace Rpg.BattleSystem
             DontDestroyOnLoad(this);
             Actor.OnFinished += NextCharacter;
 
-            switch (data.state)
+            switch (BattleData.state)
             {
                 case BattleData.TransitionState.OutBattleWon:
-                    FindObjectOfType<SavingSystem>().Load("worldScene.data");
-                    data.state = BattleData.TransitionState.InWorld;
+                    FindObjectOfType<SavingSystem>().Load("sav.data");
+                    BattleData.state = BattleData.TransitionState.InWorld;
                     GiveRewards(data.reward);
                     UpdateQuestList();
                     break;
                 case BattleData.TransitionState.OutBattleLost:
                     FindObjectOfType<SavingSystem>().Load("sav.data");
-                    data.state = BattleData.TransitionState.InWorld;
+                    BattleData.state = BattleData.TransitionState.InWorld;
                     break;
 
             }
@@ -61,7 +61,7 @@ namespace Rpg.BattleSystem
         public void SetUpBattle(List<PlayerActor> players, List<EnemyActor> enemies, Vector3 originalPosition, RewardData reward)
         {
             data.ClearLists();
-            data.state = BattleData.TransitionState.InBattle;
+            BattleData.state = BattleData.TransitionState.InBattle;
             data.originalPlayerPosition = originalPosition;
             data.reward = reward;
             foreach (PlayerActor player in players)
@@ -94,7 +94,7 @@ namespace Rpg.BattleSystem
         {
             characters.Clear();
             characters = data.spawnedPlayers.Union(data.spawnedEnemies).ToList();
-            characters = characters.OrderByDescending(characters => characters.speed).ToList();
+            characters = characters.OrderByDescending(characters => characters.Data.speed).ToList();
         }
 
         private void SetStats()
@@ -165,7 +165,6 @@ namespace Rpg.BattleSystem
 
         private void BattleOver(bool playersWon)
         {
-            FindObjectOfType<SavingSystem>().Save("battle.sav");
             onBattleOver?.Invoke();
             onUIShow.Invoke(playersWon, data.reward);
         }

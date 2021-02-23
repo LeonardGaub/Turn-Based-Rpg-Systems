@@ -7,65 +7,95 @@ namespace Rpg.Inventories
 {
     public class Equipment : MonoBehaviour, ISaveable
     { 
-        Dictionary<EquipLocation, EquipableItem> equippedItems = new Dictionary<EquipLocation, EquipableItem>();
-
+        Dictionary<PlayerData, Dictionary<EquipLocation, EquipableItem>> equipedItems = new Dictionary<PlayerData, Dictionary<EquipLocation, EquipableItem>>();
+        
         public event Action equipmentUpdated;
+        public Action<EquipableItem> onRemoveItem;
+        public Action onCharacterSwitch;
+        public List<PlayerData> players = new List<PlayerData>();
+
+        public PlayerData selectedPlayer;
+
+        private void Start()
+        {
+            foreach(var player in players)
+            {
+                equipedItems.Add(player, new Dictionary<EquipLocation, EquipableItem>());
+            }
+        }
 
         public EquipableItem GetItemInSlot(EquipLocation equipLocation)
         {
-            if (!equippedItems.ContainsKey(equipLocation))
+            if (!equipedItems[selectedPlayer].ContainsKey(equipLocation))
             {
                 return null;
             }
 
-            return equippedItems[equipLocation];
+            return equipedItems[selectedPlayer][equipLocation];
         }
 
         public void AddItem(EquipLocation slot, EquipableItem item)
         {
             Debug.Assert(item.GetAllowedEquipLocation() == slot);
 
-            equippedItems[slot] = item;
+            equipedItems[selectedPlayer][slot] = item;
 
-            if (equipmentUpdated != null)
-            {
-                equipmentUpdated();
-            }
+            equipmentUpdated?.Invoke();
+            
         }
 
         public void RemoveItem(EquipLocation slot)
         {
-            equippedItems.Remove(slot);
-            if (equipmentUpdated != null)
-            {
-                equipmentUpdated();
-            }
+            onRemoveItem.Invoke(GetItemInSlot(slot));
+            equipedItems[selectedPlayer].Remove(slot);
+            equipmentUpdated?.Invoke();  
+        }
+
+        public Dictionary<EquipLocation, EquipableItem> GetEquipedItems()
+        {
+            return equipedItems[selectedPlayer];
+        }
+
+        public void ChangeSelectedPlayer(int index)
+        {
+            if(players[index] == null) { return; }
+            selectedPlayer = players[index];
+            onCharacterSwitch?.Invoke();
         }
 
         object ISaveable.CaptureState()
         {
-            var equippedItemsForSerialization = new Dictionary<EquipLocation, string>();
-            foreach (var pair in equippedItems)
+            var equippedItemsForSerialization = new Dictionary<int, Dictionary<EquipLocation, string>>();
+            for (int i = 0; i < players.Count; i++)
             {
-                equippedItemsForSerialization[pair.Key] = pair.Value.GetItemID();
+                equippedItemsForSerialization.Add(i, new Dictionary<EquipLocation, string>());
+                foreach(var item in equipedItems[players[i]])
+                {
+                    equippedItemsForSerialization[i].Add(item.Key, item.Value.GetItemID());
+                }
             }
             return equippedItemsForSerialization;
         }
 
         void ISaveable.RestoreState(object state)
         {
-            equippedItems = new Dictionary<EquipLocation, EquipableItem>();
+            equipedItems = new Dictionary<PlayerData, Dictionary<EquipLocation, EquipableItem>>();
 
-            var equippedItemsForSerialization = (Dictionary<EquipLocation, string>)state;
+            var equippedItemsForSerialization = (Dictionary<int, Dictionary<EquipLocation, string>>)state;
 
-            foreach (var pair in equippedItemsForSerialization)
+            for (int i = 0; i < players.Count; i++)
             {
-                var item = (EquipableItem)InventoryItem.GetFromID(pair.Value);
-                if (item != null)
+                equipedItems[players[i]] = new Dictionary<EquipLocation, EquipableItem>();
+                foreach(var pair in equippedItemsForSerialization[i])   
                 {
-                    equippedItems[pair.Key] = item;
+                    var item = (EquipableItem)InventoryItem.GetFromID(pair.Value);
+                    if(item != null)
+                    {
+                        equipedItems[players[i]][pair.Key] = item;
+                    }
                 }
             }
+            equipmentUpdated?.Invoke();
         }
     }
 }
