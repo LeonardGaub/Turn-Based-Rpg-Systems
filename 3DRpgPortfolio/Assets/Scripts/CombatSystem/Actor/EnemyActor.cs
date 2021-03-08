@@ -8,6 +8,7 @@ namespace Rpg.BattleSystem.Actors
 {
     public class EnemyActor : Actor
     {
+        [SerializeField] ParticleSystem targeted;
         public override IEnumerator Turn()
         {
             if (!isAlive)
@@ -28,6 +29,16 @@ namespace Rpg.BattleSystem.Actors
         {
             var copy = Instantiate(data);
             data = copy;
+        }
+
+        public void OnTargeted()
+        {
+            targeted.gameObject.SetActive(true);
+        }
+
+        public void OnDeTargeted()
+        {
+            targeted.gameObject.SetActive(false);
         }
 
         private void ChooseAttack()

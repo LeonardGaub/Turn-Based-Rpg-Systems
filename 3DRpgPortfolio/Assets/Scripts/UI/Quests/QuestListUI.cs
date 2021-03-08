@@ -22,6 +22,7 @@ public class QuestListUI : MonoBehaviour
         }
         foreach (QuestStatus status in questList.GetStatuses())
         {
+            if (status.IsComplete()) { continue; }
             var newQuest = Instantiate(questPrefab, transform);
             newQuest.SetUp(status);
         }

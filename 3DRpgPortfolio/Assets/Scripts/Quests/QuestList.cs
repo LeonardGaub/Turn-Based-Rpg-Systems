@@ -57,7 +57,6 @@ public class QuestList : MonoBehaviour, ISaveable, IPredicateEvaluator
         if (status.IsComplete())
         {
             GiveReward(quest);
-            RemoveQuest(GetQuestStatus(quest));
         }
         onUpdate?.Invoke();
     }

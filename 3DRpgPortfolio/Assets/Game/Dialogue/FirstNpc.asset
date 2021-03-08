@@ -1,0 +1,312 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8920062371261354567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d8861ff3af40b4e80c8c02e2b87178, type: 3}
+  m_Name: accb889e-1e3e-4d07-ba01-c7e148490548
+  m_EditorClassIdentifier: 
+  text: Test
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 885
+    y: 231
+    width: 200
+    height: 100
+  speaker: 1
+  onEnterAction: []
+  onExitAction: []
+  condition:
+    and:
+    - or:
+      - predicate: Has Quest
+        parameters:
+        - KillBlackKnight
+        negate: 0
+    - or:
+      - predicate: Completed Quest
+        parameters:
+        - KillBlackKnight
+        negate: 1
+--- !u!114 &-5841588314356533132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d8861ff3af40b4e80c8c02e2b87178, type: 3}
+  m_Name: faf026b1-093d-4411-ba6e-5cde35aeb153
+  m_EditorClassIdentifier: 
+  text: Im nobody!
+  children:
+  - accb889e-1e3e-4d07-ba01-c7e148490548
+  - e827f264-8e54-42ba-8f80-e4783fa23151
+  - 6d6e79bf-826a-451a-aded-cc511e172835
+  rect:
+    serializedVersion: 2
+    x: 626
+    y: 145
+    width: 200
+    height: 100
+  speaker: 1
+  onEnterAction: []
+  onExitAction: []
+  condition:
+    and: []
+--- !u!114 &-4769445807315499330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d8861ff3af40b4e80c8c02e2b87178, type: 3}
+  m_Name: 556f4d5e-c494-4842-960f-f37a66757968
+  m_EditorClassIdentifier: 
+  text: Hello Hero!
+  children:
+  - 2298e91d-dd31-42f6-8f71-ae7757d5d6f4
+  - 0f42c1d6-1b3a-44f0-974f-8a377d471066
+  rect:
+    serializedVersion: 2
+    x: 62
+    y: 127
+    width: 200
+    height: 100
+  speaker: 1
+  onEnterAction: []
+  onExitAction: []
+  condition:
+    and: []
+--- !u!114 &-2293659329487331844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d8861ff3af40b4e80c8c02e2b87178, type: 3}
+  m_Name: 8d1fcbdf-e49c-45ce-abfb-bc14a277397c
+  m_EditorClassIdentifier: 
+  text: No
+  children:
+  - 9b80701b-2802-45c9-865c-5e230c93e267
+  rect:
+    serializedVersion: 2
+    x: 1177
+    y: 127
+    width: 200
+    height: 100
+  speaker: 0
+  onEnterAction: []
+  onExitAction: []
+  condition:
+    and: []
+--- !u!114 &-1387516164933948927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d8861ff3af40b4e80c8c02e2b87178, type: 3}
+  m_Name: 6d6e79bf-826a-451a-aded-cc511e172835
+  m_EditorClassIdentifier: 
+  text: 
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 884
+    y: 378
+    width: 200
+    height: 100
+  speaker: 1
+  onEnterAction: []
+  onExitAction: []
+  condition:
+    and:
+    - or:
+      - predicate: Has Quest
+        parameters:
+        - KillBlackKnight
+        negate: 0
+    - or:
+      - predicate: Completed Quest
+        parameters:
+        - KillBlackKnight
+        negate: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56e85443a4f3c4f4f93b4a797a206c0c, type: 3}
+  m_Name: FirstNpc
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -4769445807315499330}
+  - {fileID: 2574478163057972671}
+  - {fileID: 4229094274846570136}
+  - {fileID: -5841588314356533132}
+  - {fileID: -8920062371261354567}
+  - {fileID: 5697786278874857920}
+  - {fileID: 5246091245685562368}
+  - {fileID: -2293659329487331844}
+  - {fileID: -1387516164933948927}
+  - {fileID: 1512778550420675349}
+  newNodeOffset: {x: 300, y: 0}
+--- !u!114 &1512778550420675349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d8861ff3af40b4e80c8c02e2b87178, type: 3}
+  m_Name: 9b80701b-2802-45c9-865c-5e230c93e267
+  m_EditorClassIdentifier: 
+  text: 'Test '
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 1467
+    y: 285
+    width: 200
+    height: 100
+  speaker: 1
+  onEnterAction: []
+  onExitAction: []
+  condition:
+    and: []
+--- !u!114 &2574478163057972671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d8861ff3af40b4e80c8c02e2b87178, type: 3}
+  m_Name: 2298e91d-dd31-42f6-8f71-ae7757d5d6f4
+  m_EditorClassIdentifier: 
+  text: Who are you?
+  children:
+  - faf026b1-093d-4411-ba6e-5cde35aeb153
+  rect:
+    serializedVersion: 2
+    x: 282
+    y: 234
+    width: 200
+    height: 100
+  speaker: 0
+  onEnterAction: []
+  onExitAction: []
+  condition:
+    and: []
+--- !u!114 &4229094274846570136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d8861ff3af40b4e80c8c02e2b87178, type: 3}
+  m_Name: 0f42c1d6-1b3a-44f0-974f-8a377d471066
+  m_EditorClassIdentifier: 
+  text: Hi!
+  children:
+  - e827f264-8e54-42ba-8f80-e4783fa23151
+  rect:
+    serializedVersion: 2
+    x: 288
+    y: 11
+    width: 200
+    height: 100
+  speaker: 0
+  onEnterAction: []
+  onExitAction: []
+  condition:
+    and: []
+--- !u!114 &5246091245685562368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d8861ff3af40b4e80c8c02e2b87178, type: 3}
+  m_Name: b8c43742-01e2-4ced-8c10-bd0605e8e96d
+  m_EditorClassIdentifier: 
+  text: Yes
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 1181
+    y: 4
+    width: 200
+    height: 100
+  speaker: 0
+  onEnterAction: []
+  onExitAction:
+  - GetKillQuest
+  condition:
+    and: []
+--- !u!114 &5697786278874857920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d8861ff3af40b4e80c8c02e2b87178, type: 3}
+  m_Name: e827f264-8e54-42ba-8f80-e4783fa23151
+  m_EditorClassIdentifier: 
+  text: Could you kill 3 Black Knights for me
+  children:
+  - b8c43742-01e2-4ced-8c10-bd0605e8e96d
+  - 8d1fcbdf-e49c-45ce-abfb-bc14a277397c
+  rect:
+    serializedVersion: 2
+    x: 868
+    y: -10
+    width: 200
+    height: 100
+  speaker: 1
+  onEnterAction: []
+  onExitAction: []
+  condition:
+    and:
+    - or:
+      - predicate: Has Quest
+        parameters:
+        - KillBlackKnight
+        negate: 1
